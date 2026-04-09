@@ -163,6 +163,80 @@
     .dt4{background:#EBF8FF;border-color:#90CDF4} .dt4 h3{color:#2C5282}
     .dt5{background:#FAF5FF;border-color:#D6BCFA} .dt5 h3{color:#553C9A}
 
+    /* ── REVIEW 17 SDGs & SWOT ── */
+    #review { background: var(--cream); }
+    .review-intro {
+      background: var(--navy); border-radius: 20px; padding: 2.5rem 2rem;
+      margin-bottom: 3rem; text-align: center;
+    }
+    .review-intro p { color: rgba(241,250,238,.8); font-size: .95rem; line-height: 1.75; max-width: 700px; margin: .8rem auto 0; }
+    .review-intro h3 { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.5rem; }
+
+    .swot-wrapper { margin-bottom: 3.5rem; }
+    .swot-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem;
+      padding-bottom: 1rem; border-bottom: 2px solid rgba(29,53,87,.1);
+    }
+    .swot-badge {
+      flex-shrink: 0; background: var(--red); color: #fff;
+      font-weight: 700; font-size: .9rem; min-width: 60px; height: 60px;
+      border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      letter-spacing: .03em;
+    }
+    .swot-header h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); }
+    .swot-header p { font-size: .85rem; color: #4a5568; margin-top: .2rem; line-height: 1.5; }
+
+    .swot-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+    .swot-cell {
+      border-radius: 16px; padding: 1.6rem;
+      position: relative; overflow: hidden;
+    }
+    .swot-cell::before {
+      content: attr(data-label);
+      position: absolute; right: 1rem; top: .8rem;
+      font-size: 3.5rem; font-weight: 900; opacity: .06;
+      font-family: 'Playfair Display', serif; line-height: 1;
+    }
+    .swot-cell h4 {
+      font-size: .7rem; font-weight: 700; letter-spacing: .15em;
+      text-transform: uppercase; margin-bottom: 1rem; opacity: .75;
+    }
+    .swot-cell ul { list-style: none; padding: 0; }
+    .swot-cell ul li {
+      font-size: .88rem; line-height: 1.6; padding: .4rem 0;
+      border-bottom: 1px solid rgba(0,0,0,.06); display: flex; gap: .6rem;
+    }
+    .swot-cell ul li:last-child { border-bottom: none; }
+    .swot-cell ul li::before { content: '›'; font-weight: 700; flex-shrink: 0; }
+
+    .sw-s { background: #EBF8F0; }
+    .sw-s h4 { color: #276749; }
+    .sw-s ul li::before { color: #276749; }
+    .sw-s::before { color: #276749; }
+
+    .sw-w { background: #FFF5F5; }
+    .sw-w h4 { color: #C53030; }
+    .sw-w ul li::before { color: #C53030; }
+    .sw-w::before { color: #C53030; }
+
+    .sw-o { background: #FFFBEB; }
+    .sw-o h4 { color: #B7791F; }
+    .sw-o ul li::before { color: #B7791F; }
+    .sw-o::before { color: #B7791F; }
+
+    .sw-t { background: #EBF4FF; }
+    .sw-t h4 { color: #2C5282; }
+    .sw-t ul li::before { color: #2C5282; }
+    .sw-t::before { color: #2C5282; }
+
+    @media (max-width: 600px) {
+      .swot-grid { grid-template-columns: 1fr; }
+      .swot-header { flex-direction: column; align-items: flex-start; gap: .8rem; }
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--navy); color: rgba(241,250,238,.5);
@@ -286,6 +360,7 @@
     <li><a href="#fakta" class="nav-link">Fakta & Angka</a></li>
     <li><a href="#target" class="nav-link">Target</a></li>
     <li><a href="#design" class="nav-link">Design Thinking</a></li>
+    <li><a href="#review" class="nav-link">Review SDGs</a></li>
   </ul>
 </nav>
 
@@ -376,7 +451,7 @@
         </div>
       </div>
       <div class="target-card reveal">
-        <div class="target-badge">4.2</div>
+        <div class="target-badge">4.4</div>
         <div>
           <h3>Peningkatan Keterampilan Teknis & Vokasional</h3>
           <p>Pada 2030, secara substansial meningkatkan jumlah pemuda dan orang dewasa yang memiliki keterampilan relevan, termasuk keterampilan teknis dan vokasional, untuk pekerjaan, pekerjaan layak, dan kewirausahaan.</p>
@@ -419,6 +494,119 @@
         <p>Mengevaluasi dampak solusi terhadap pencapaian SDG 4, mengidentifikasi hambatan, dan merumuskan langkah lanjutan yang lebih efektif dan berkelanjutan.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- REVIEW 17 SDGs & SWOT ANALYSIS -->
+<section id="review">
+  <div class="container">
+    <div class="section-label reveal">Review 17 SDGs</div>
+    <h2 class="section-title reveal">Analisis SWOT: 2 Target SDG 4</h2>
+    <p class="section-desc reveal">Dari 17 SDGs yang ditetapkan PBB, proyek ini berfokus pada <strong>SDG 4 – Pendidikan Berkualitas</strong>. Berikut adalah analisis SWOT (Kekuatan, Kelemahan, Peluang, dan Ancaman) untuk dua target utama yang dipilih, dalam konteks Indonesia.</p>
+
+    <div class="review-intro reveal" style="margin-top:2rem">
+      <h3>Mengapa SDG 4?</h3>
+      <p>SDG 4 (Pendidikan Berkualitas) dipilih karena pendidikan adalah fondasi dari seluruh 17 tujuan SDGs. Tanpa akses pendidikan yang merata dan berkualitas, pencapaian tujuan lain seperti pengurangan kemiskinan (SDG 1), kesetaraan gender (SDG 5), hingga pertumbuhan ekonomi (SDG 8) akan sangat sulit diwujudkan — khususnya di Indonesia yang memiliki tantangan geografis dan kesenjangan yang kompleks.</p>
+    </div>
+
+    <!-- SWOT Target 4.1 -->
+    <div class="swot-wrapper" style="margin-top:3rem">
+      <div class="swot-header reveal">
+        <div class="swot-badge">4.1</div>
+        <div>
+          <h3>Target 4.1 – Pendidikan Dasar & Menengah Gratis dan Berkualitas</h3>
+          <p>Pada 2030, memastikan semua anak perempuan dan laki-laki menyelesaikan pendidikan dasar dan menengah yang gratis, setara, dan berkualitas.</p>
+        </div>
+      </div>
+      <div class="swot-grid">
+        <div class="swot-cell sw-s reveal" data-label="S">
+          <h4>Kekuatan (Strengths)</h4>
+          <ul>
+            <li>Program Wajib Belajar 12 Tahun sudah ditetapkan dalam kebijakan nasional</li>
+            <li>Dana BOS (Bantuan Operasional Sekolah) tersedia di seluruh sekolah negeri</li>
+            <li>APM (Angka Partisipasi Murni) SD sudah mencapai >97%, menunjukkan akses dasar yang luas</li>
+            <li>Kurikulum Merdeka memberikan fleksibilitas bagi sekolah dan guru dalam pembelajaran</li>
+          </ul>
+        </div>
+        <div class="swot-cell sw-w reveal" data-label="W">
+          <h4>Kelemahan (Weaknesses)</h4>
+          <ul>
+            <li>Kualitas pendidikan sangat tidak merata antara Jawa dan daerah 3T (Terdepan, Terluar, Tertinggal)</li>
+            <li>Kekurangan guru berkualitas di daerah pedesaan dan terpencil</li>
+            <li>Infrastruktur sekolah banyak yang masih rusak atau tidak layak</li>
+            <li>Angka putus sekolah di jenjang SMP–SMA masih cukup tinggi, terutama karena faktor ekonomi</li>
+          </ul>
+        </div>
+        <div class="swot-cell sw-o reveal" data-label="O">
+          <h4>Peluang (Opportunities)</h4>
+          <ul>
+            <li>Bonus demografi Indonesia 2030 menjadi pendorong investasi besar di sektor pendidikan</li>
+            <li>Teknologi digital (e-learning, platform daring) membuka akses ke daerah terpencil</li>
+            <li>Kolaborasi dengan lembaga internasional (UNICEF, UNESCO, Bank Dunia) untuk pendanaan</li>
+            <li>Program beasiswa pemerintah (KIP-S) yang terus diperluas cakupannya</li>
+          </ul>
+        </div>
+        <div class="swot-cell sw-t reveal" data-label="T">
+          <h4>Ancaman (Threats)</h4>
+          <ul>
+            <li>Kesenjangan digital yang besar antara perkotaan dan pedesaan memperburuk ketimpangan</li>
+            <li>Tekanan ekonomi keluarga miskin memaksa anak berhenti sekolah untuk bekerja</li>
+            <li>Bencana alam (gempa, banjir) kerap merusak infrastruktur pendidikan di berbagai wilayah</li>
+            <li>Potensi penurunan anggaran pendidikan akibat tekanan fiskal atau prioritas kebijakan lain</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SWOT Target 4.4 -->
+    <div class="swot-wrapper">
+      <div class="swot-header reveal">
+        <div class="swot-badge">4.4</div>
+        <div>
+          <h3>Target 4.4 – Peningkatan Keterampilan Teknis & Vokasional</h3>
+          <p>Pada 2030, secara substansial meningkatkan jumlah pemuda dan orang dewasa yang memiliki keterampilan teknis dan vokasional untuk pekerjaan layak dan kewirausahaan.</p>
+        </div>
+      </div>
+      <div class="swot-grid">
+        <div class="swot-cell sw-s reveal" data-label="S">
+          <h4>Kekuatan (Strengths)</h4>
+          <ul>
+            <li>Jaringan SMK (Sekolah Menengah Kejuruan) yang luas, tersebar di seluruh provinsi Indonesia</li>
+            <li>Program "SMK Pusat Keunggulan" yang menghubungkan sekolah vokasi dengan industri secara langsung</li>
+            <li>Balai Latihan Kerja (BLK) tersebar di berbagai kabupaten/kota untuk pelatihan keterampilan non-formal</li>
+            <li>Minat pemuda terhadap kewirausahaan digital yang semakin tinggi</li>
+          </ul>
+        </div>
+        <div class="swot-cell sw-w reveal" data-label="W">
+          <h4>Kelemahan (Weaknesses)</h4>
+          <ul>
+            <li>Kurikulum vokasi sering tertinggal dibanding kebutuhan nyata dunia industri yang terus berkembang</li>
+            <li>Peralatan praktik di banyak SMK sudah usang dan tidak sesuai standar industri modern</li>
+            <li>Stigma sosial bahwa lulusan vokasi lebih rendah dari lulusan perguruan tinggi masih kuat di masyarakat</li>
+            <li>Ketidaksesuaian antara kompetensi lulusan SMK dengan kebutuhan pasar kerja (mismatch)</li>
+          </ul>
+        </div>
+        <div class="swot-cell sw-o reveal" data-label="O">
+          <h4>Peluang (Opportunities)</h4>
+          <ul>
+            <li>Pertumbuhan sektor digital, e-commerce, dan teknologi membuka banyak lapangan kerja baru</li>
+            <li>Program Magang Industri dan Teaching Factory yang mendorong kolaborasi sekolah-perusahaan</li>
+            <li>Dana Abadi Vokasi yang disediakan pemerintah untuk pembaruan kurikulum dan peralatan</li>
+            <li>Potensi ekspor tenaga kerja terampil ke negara-negara yang kekurangan SDM teknis</li>
+          </ul>
+        </div>
+        <div class="swot-cell sw-t reveal" data-label="T">
+          <h4>Ancaman (Threats)</h4>
+          <ul>
+            <li>Otomatisasi dan kecerdasan buatan (AI) berpotensi menggantikan pekerjaan berbasis keterampilan dasar</li>
+            <li>Persaingan ketat dari tenaga kerja asing yang lebih terampil di era pasar global terbuka</li>
+            <li>Perubahan kebutuhan industri yang sangat cepat membuat kurikulum mudah menjadi usang</li>
+            <li>Tingkat pengangguran lulusan SMK yang masih relatif tinggi menurunkan minat masyarakat</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
