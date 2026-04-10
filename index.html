@@ -127,7 +127,46 @@
       color: var(--gold); line-height: 1;
     }
     .fact-card p { margin-top: .6rem; color: rgba(241,250,238,.8); font-size: .92rem; line-height: 1.6; }
-    .fact-card .ref { margin-top: 1rem; font-size: .72rem; color: rgba(241,250,238,.4); font-style: italic; }
+    .fact-card .ref { margin-top: 1rem; font-size: .70rem; color: rgba(241,250,238,.45); font-style: italic; line-height: 1.55; border-top: 1px solid rgba(255,255,255,.08); padding-top: .75rem; }
+    .fact-card { cursor: pointer; }
+    .fact-card .read-more { margin-top: .8rem; font-size: .75rem; color: var(--gold); font-weight: 600; display: flex; align-items: center; gap: .3rem; }
+    .fact-card .read-more span::after { content: ' →'; transition: transform .2s; }
+    .fact-card:hover .read-more span::after { margin-left: 4px; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,.65); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white); border-radius: 20px; max-width: 680px; width: 100%;
+      max-height: 88vh; overflow-y: auto; position: relative;
+      box-shadow: 0 24px 64px rgba(0,0,0,.35);
+      animation: modalIn .3s ease both;
+    }
+    @keyframes modalIn { from { opacity:0; transform: scale(.94) translateY(20px); } to { opacity:1; transform: scale(1) translateY(0); } }
+    .modal-header { background: var(--navy); padding: 2rem 2rem 1.5rem; border-radius: 20px 20px 0 0; position: relative; }
+    .modal-header .modal-num { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .modal-header h2 { color: var(--white); font-size: 1.2rem; margin-top: .4rem; line-height: 1.3; }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,.15); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+    .modal-close:hover { background: rgba(255,255,255,.3); }
+    .modal-body { padding: 1.8rem 2rem; }
+    .modal-body h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin: 1.4rem 0 .5rem; }
+    .modal-body h3:first-child { margin-top: 0; }
+    .modal-body p { font-size: .92rem; color: #4a5568; line-height: 1.75; }
+    .modal-body ul { padding-left: 1.2rem; }
+    .modal-body ul li { font-size: .92rem; color: #4a5568; line-height: 1.75; margin-bottom: .3rem; }
+    .modal-source { background: var(--cream); border-radius: 12px; padding: 1rem 1.2rem; margin-top: 1.4rem; }
+    .modal-source .source-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin-bottom: .4rem; }
+    .modal-source p { font-size: .78rem; color: #555; font-style: italic; line-height: 1.6; }
+    .modal-tag { display: inline-block; background: rgba(197,25,45,.1); color: var(--red); font-size: .7rem; font-weight: 700; padding: .25rem .7rem; border-radius: 999px; margin-bottom: 1rem; }
+    @media (max-width: 480px) {
+      .modal-header { padding: 1.5rem 1.2rem 1.2rem; }
+      .modal-body { padding: 1.2rem; }
+      .modal-header .modal-num { font-size: 2.5rem; }
+    }
 
     /* ── TARGET ── */
     #target { background: var(--cream); }
@@ -407,34 +446,189 @@
     <div class="section-label reveal">Data & Statistik</div>
     <h2 class="section-title reveal">5 Fakta SDG 4 di Indonesia</h2>
     <div class="facts-grid">
-      <div class="fact-card reveal">
-        <div class="fact-num">94,5%</div>
-        <p>Tingkat melek huruf penduduk Indonesia usia 15–59 tahun pada 2022, menunjukkan kemajuan signifikan namun masih menyisakan tantangan di daerah terpencil.</p>
-        <div class="ref">Badan Pusat Statistik. (2022). Statistik pendidikan Indonesia 2022. BPS RI.</div>
+
+      <div class="fact-card reveal" onclick="openModal('f1')">
+        <div class="fact-num">96,35%</div>
+        <p>Tingkat melek huruf penduduk Indonesia usia 15 tahun ke atas pada 2022, mencerminkan kemajuan literasi namun tantangan tetap ada di daerah 3T.</p>
+        <div class="read-more"><span>Lihat detail</span></div>
+        <div class="ref">Badan Pusat Statistik. (2022). <em>Statistik pendidikan Indonesia 2022</em>. BPS RI.</div>
       </div>
-      <div class="fact-card reveal">
-        <div class="fact-num">7,99 Jt</div>
-        <p>Jumlah anak usia sekolah yang masih berada di luar sistem pendidikan formal di Indonesia, mayoritas berasal dari keluarga miskin dan daerah 3T.</p>
-        <div class="ref">Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi. (2023). Laporan capaian pendidikan nasional 2023. Kemendikbudristek RI.</div>
+
+      <div class="fact-card reveal" onclick="openModal('f2')">
+        <div class="fact-num">3,67 Jt</div>
+        <p>Jumlah anak tidak sekolah (usia 7–18 tahun) di Indonesia pada 2023, berdasarkan data Susenas BPS, mayoritas dari keluarga miskin dan daerah terpencil.</p>
+        <div class="read-more"><span>Lihat detail</span></div>
+        <div class="ref">Badan Pusat Statistik. (2023). <em>Survei Sosial Ekonomi Nasional (Susenas) Maret 2023</em>. BPS RI.</div>
       </div>
-      <div class="fact-card reveal">
-        <div class="fact-num">72,5%</div>
-        <p>Angka Partisipasi Kasar (APK) jenjang SMA/sederajat di Indonesia pada 2022, artinya masih ada sekitar 27,5% anak usia SMA yang tidak bersekolah.</p>
-        <div class="ref">Badan Pusat Statistik. (2022). Indikator pendidikan Indonesia: Angka partisipasi kasar 2022. BPS RI.</div>
+
+      <div class="fact-card reveal" onclick="openModal('f3')">
+        <div class="fact-num">APK SMA 85,45%</div>
+        <p>Angka Partisipasi Kasar (APK) SMA/sederajat nasional Indonesia tahun 2023, meningkat dari tahun sebelumnya namun masih di bawah target Renstra 2024.</p>
+        <div class="read-more"><span>Lihat detail</span></div>
+        <div class="ref">Badan Pusat Statistik. (2023). <em>Indikator pendidikan 1994–2024</em>. BPS RI.</div>
       </div>
-      <div class="fact-card reveal">
-        <div class="fact-num">Rp 612T</div>
-        <p>Anggaran pendidikan Indonesia pada APBN 2023, mewakili 20% dari total APBN sesuai amanat konstitusi, namun kualitas pemerataan masih perlu ditingkatkan.</p>
-        <div class="ref">Kementerian Keuangan Republik Indonesia. (2023). Nota keuangan dan APBN tahun anggaran 2023. Kemenkeu RI.</div>
+
+      <div class="fact-card reveal" onclick="openModal('f4')">
+        <div class="fact-num">Rp 612,2T</div>
+        <p>Anggaran pendidikan Indonesia pada APBN 2023, setara 20% dari total APBN sesuai amanat konstitusi. Naik menjadi Rp 665T pada APBN 2024.</p>
+        <div class="read-more"><span>Lihat detail</span></div>
+        <div class="ref">Kementerian Keuangan RI. (2023). <em>Nota keuangan dan APBN tahun anggaran 2023</em>. Kemenkeu RI.</div>
       </div>
-      <div class="fact-card reveal">
-        <div class="fact-num">6,99</div>
-        <p>Skor rata-rata Indonesia dalam PISA 2022 menunjukkan peningkatan dibanding periode sebelumnya, walau masih di bawah rata-rata OECD untuk literasi dan numerasi.</p>
-        <div class="ref">Organisation for Economic Co-operation and Development. (2023). PISA 2022 results. OECD Publishing.</div>
+
+      <div class="fact-card reveal" onclick="openModal('f5')">
+        <div class="fact-num">Peringkat 66 / 81</div>
+        <p>Posisi Indonesia dalam PISA 2022 dari 81 negara. Skor: Matematika 366, Membaca 359, Sains 383 — naik 5–6 peringkat dibanding PISA 2018.</p>
+        <div class="read-more"><span>Lihat detail</span></div>
+        <div class="ref">Organisation for Economic Co-operation and Development. (2023). <em>PISA 2022 results</em> (Vol. I). OECD Publishing. https://doi.org/10.1787/53f23881-en</div>
       </div>
+
     </div>
   </div>
 </section>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-f1" onclick="closeModal(event, 'f1')">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModalBtn('f1')">✕</button>
+      <div class="modal-num">96,35%</div>
+      <h2>Tingkat Melek Huruf Indonesia (2022)</h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">📖 Literasi</div>
+      <h3>Temuan Utama</h3>
+      <p>Angka Melek Huruf (AMH) penduduk Indonesia usia 15 tahun ke atas mencapai <strong>96,35%</strong> pada tahun 2022. Artinya, 96 dari setiap 100 penduduk dewasa Indonesia mampu membaca dan menulis.</p>
+      <h3>Konteks & Analisis</h3>
+      <ul>
+        <li>AMH Indonesia terus meningkat dari tahun ke tahun, namun kesenjangan antara perkotaan dan perdesaan masih signifikan</li>
+        <li>AMH perdesaan hanya 93,65% (2021), jauh di bawah perkotaan yang mencapai >98%</li>
+        <li>Provinsi Papua, Papua Barat, dan NTT masih mencatat AMH terendah nasional</li>
+        <li>AMH pemuda (15–24 tahun) jauh lebih tinggi yaitu 99,74% (2022), menunjukkan generasi muda lebih melek huruf</li>
+      </ul>
+      <h3>Relevansi terhadap SDG 4</h3>
+      <p>Peningkatan AMH merupakan fondasi pencapaian SDG 4.6 (memastikan semua remaja dan sebagian besar orang dewasa mencapai literasi dan numerasi pada 2030).</p>
+      <div class="modal-source">
+        <div class="source-label">Referensi</div>
+        <p>Badan Pusat Statistik. (2022). <em>Statistik pendidikan Indonesia 2022</em>. BPS RI. https://www.bps.go.id/id/publication/2022/11/25/a80bdf8c85bc28a4e6566661/statistik-pendidikan-2022.html</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-f2" onclick="closeModal(event, 'f2')">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModalBtn('f2')">✕</button>
+      <div class="modal-num">3,67 Jt</div>
+      <h2>Anak Tidak Sekolah di Indonesia (2023)</h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">🏫 Akses Pendidikan</div>
+      <h3>Temuan Utama</h3>
+      <p>Berdasarkan Survei Sosial Ekonomi Nasional (Susenas) Maret 2023 oleh BPS, terdapat <strong>sekitar 3,67 juta anak</strong> usia 7–18 tahun yang tidak bersekolah di Indonesia.</p>
+      <h3>Faktor Penyebab</h3>
+      <ul>
+        <li>Faktor ekonomi: biaya pendidikan yang masih dianggap berat oleh keluarga kurang mampu</li>
+        <li>Geografis: keterbatasan akses sekolah di daerah 3T (Terdepan, Terluar, Tertinggal)</li>
+        <li>Sosial-budaya: pernikahan dini, terutama pada anak perempuan di daerah tertentu</li>
+        <li>Anak berkebutuhan khusus yang belum terlayani secara optimal</li>
+      </ul>
+      <h3>Upaya Pemerintah</h3>
+      <p>Program Indonesia Pintar (PIP) telah menjangkau lebih dari 21 juta siswa pada 2024 untuk mencegah putus sekolah akibat faktor ekonomi.</p>
+      <div class="modal-source">
+        <div class="source-label">Referensi</div>
+        <p>Badan Pusat Statistik. (2023). <em>Survei Sosial Ekonomi Nasional (Susenas) Maret 2023: Indikator pendidikan</em>. BPS RI. https://www.bps.go.id</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-f3" onclick="closeModal(event, 'f3')">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModalBtn('f3')">✕</button>
+      <div class="modal-num">85,45%</div>
+      <h2>APK SMA/Sederajat Nasional (2023)</h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">🎓 Partisipasi Sekolah</div>
+      <h3>Temuan Utama</h3>
+      <p>Angka Partisipasi Kasar (APK) SMA/SMK/MA/sederajat secara nasional mencapai <strong>85,45%</strong> pada tahun 2023, meningkat dibanding tahun-tahun sebelumnya namun masih di bawah target Renstra Kemendikbudristek 2020–2024.</p>
+      <h3>Perbandingan Jenjang Pendidikan (2023)</h3>
+      <ul>
+        <li>APK SD/sederajat: 105,62% (melampaui 100% karena ada siswa di luar usia ideal)</li>
+        <li>APK SMP/sederajat: ~93%</li>
+        <li>APK SMA/sederajat: 85,45%</li>
+        <li>APK Perguruan Tinggi: ~31%</li>
+      </ul>
+      <h3>Interpretasi</h3>
+      <p>Semakin tinggi jenjang pendidikan, semakin rendah APK. Ini menunjukkan banyak siswa yang tidak melanjutkan sekolah ke jenjang yang lebih tinggi, terutama dari kelompok ekonomi bawah.</p>
+      <div class="modal-source">
+        <div class="source-label">Referensi</div>
+        <p>Badan Pusat Statistik. (2023). <em>Indikator pendidikan 1994–2024</em>. BPS RI. https://www.bps.go.id/en/statistics-table/1/MTUyNSMx/indikator-pendidikan-1994-2024.html</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-f4" onclick="closeModal(event, 'f4')">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModalBtn('f4')">✕</button>
+      <div class="modal-num">Rp 612,2T</div>
+      <h2>Anggaran Pendidikan APBN 2023</h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">💰 Anggaran</div>
+      <h3>Temuan Utama</h3>
+      <p>Pemerintah Indonesia mengalokasikan anggaran pendidikan sebesar <strong>Rp 612,23 triliun</strong> dalam APBN 2023, setara 20% dari total belanja negara sesuai amanat UUD 1945 dan UU Sisdiknas No. 20/2003.</p>
+      <h3>Tren Anggaran Pendidikan</h3>
+      <ul>
+        <li>APBN 2022: Rp 542,82 triliun</li>
+        <li>APBN 2023: Rp 612,23 triliun (+12,8%)</li>
+        <li>APBN 2024: Rp 665,02 triliun (+8,6%)</li>
+        <li>APBN 2025: Rp 724,26 triliun (+8,9%)</li>
+      </ul>
+      <h3>Tantangan</h3>
+      <p>Meski anggaran terus naik, kualitas pendidikan belum meningkat signifikan. Masih terdapat ketimpangan alokasi antara pusat dan daerah, serta tantangan efektivitas penggunaan anggaran di tingkat sekolah.</p>
+      <div class="modal-source">
+        <div class="source-label">Referensi</div>
+        <p>Kementerian Keuangan Republik Indonesia. (2023). <em>Nota keuangan dan Anggaran Pendapatan dan Belanja Negara tahun anggaran 2023</em>. Kemenkeu RI. https://www.kemenkeu.go.id</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-f5" onclick="closeModal(event, 'f5')">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModalBtn('f5')">✕</button>
+      <div class="modal-num">#66 / 81</div>
+      <h2>Hasil PISA 2022 Indonesia</h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">📊 PISA OECD 2022</div>
+      <h3>Skor Indonesia di PISA 2022</h3>
+      <ul>
+        <li><strong>Matematika:</strong> 366 poin (rata-rata OECD: 472)</li>
+        <li><strong>Membaca:</strong> 359 poin (rata-rata OECD: 476)</li>
+        <li><strong>Sains:</strong> 383 poin (rata-rata OECD: 485)</li>
+      </ul>
+      <h3>Peringkat & Perbandingan</h3>
+      <p>Indonesia berada di <strong>peringkat 66 dari 81 negara</strong> peserta PISA 2022. Meski skor turun 12–13 poin dari 2018 akibat dampak pandemi, peringkat Indonesia naik 5–6 posisi karena negara lain juga mengalami penurunan lebih besar.</p>
+      <h3>Konteks ASEAN</h3>
+      <ul>
+        <li>Singapura: Peringkat 1 dunia (skor total 1.679)</li>
+        <li>Vietnam: Peringkat 2 ASEAN</li>
+        <li>Indonesia: Peringkat 6 ASEAN (skor total 1.108)</li>
+      </ul>
+      <div class="modal-source">
+        <div class="source-label">Referensi</div>
+        <p>Organisation for Economic Co-operation and Development. (2023). <em>PISA 2022 results (Volume I): The state of learning and equity in education</em>. OECD Publishing. https://doi.org/10.1787/53f23881-en</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- TARGET SDG 4 -->
 <section id="target">
@@ -631,12 +825,34 @@
     hamburger.classList.toggle('open');
     navMenu.classList.toggle('open');
   });
-  // Tutup menu saat link diklik
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('open');
       navMenu.classList.remove('open');
     });
+  });
+
+  // Modal functions
+  function openModal(id) {
+    document.getElementById('modal-' + id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModalBtn(id) {
+    document.getElementById('modal-' + id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeModal(event, id) {
+    if (event.target === document.getElementById('modal-' + id)) {
+      closeModalBtn(id);
+    }
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(m => {
+        m.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
   });
 </script>
 </body>
