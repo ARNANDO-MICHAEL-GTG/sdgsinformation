@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pengenalan SDG 4 – Pendidikan Berkualitas</title>
+  <title>SDG 4 – Pendidikan Berkualitas</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -16,103 +16,844 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--navy); line-height: 1.6; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--navy); }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 999;
       background: var(--navy); display: flex; align-items: center;
       justify-content: space-between; padding: 0 2.5rem; height: 60px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.3);
     }
     nav .logo { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.2rem; }
     nav ul { list-style: none; display: flex; gap: 1.6rem; }
-    nav ul a { color: var(--cream); text-decoration: none; font-size: .85rem; font-weight: 500; }
+    nav ul a { color: var(--cream); text-decoration: none; font-size: .85rem; font-weight: 500;
+      letter-spacing: .04em; transition: color .2s; }
+    nav ul a:hover { color: var(--gold); }
 
     /* ── HERO ── */
     .hero {
       min-height: 100vh; background: var(--navy);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 2rem; position: relative; overflow: hidden;
+      text-align: center; padding: 6rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(69,123,157,.35) 0%, transparent 65%),
+                  radial-gradient(ellipse at 20% 80%, rgba(244,162,97,.15) 0%, transparent 55%);
     }
     .hero-badge {
-      background: var(--red); color: #fff; font-size: .75rem; font-weight: 700;
-      padding: .35rem 1rem; border-radius: 999px; margin-bottom: 1.5rem;
+      display: inline-block; background: var(--red); color: #fff;
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; padding: .35rem 1rem; border-radius: 999px; margin-bottom: 1.5rem;
+      animation: fadeDown .7s ease both;
     }
     .hero h1 {
-      font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem);
-      color: var(--white); line-height: 1.1; max-width: 800px;
+      font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 7vw, 5.5rem);
+      color: var(--white); line-height: 1.1; max-width: 860px;
+      animation: fadeDown .8s .1s ease both;
     }
     .hero h1 span { color: var(--gold); }
-    .hero p { margin-top: 1.5rem; color: rgba(241,250,238,.8); max-width: 600px; }
+    .hero p {
+      margin-top: 1.5rem; font-size: 1.1rem; color: rgba(241,250,238,.75);
+      max-width: 600px; line-height: 1.7; animation: fadeDown .8s .2s ease both;
+    }
+    .hero-btn {
+      margin-top: 2.2rem; display: inline-block; background: var(--gold); color: var(--navy);
+      font-weight: 700; padding: .85rem 2.2rem; border-radius: 999px; text-decoration: none;
+      font-size: .95rem; transition: transform .2s, box-shadow .2s;
+      animation: fadeDown .8s .3s ease both;
+    }
+    .hero-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(244,162,97,.4); }
+    .sdg-number {
+      position: absolute; right: -40px; bottom: -60px;
+      font-family: 'Playfair Display', serif; font-size: 28rem; font-weight: 900;
+      color: rgba(255,255,255,.03); line-height: 1; user-select: none;
+    }
 
-    /* ── SECTIONS ── */
+    /* ── SECTION WRAPPER ── */
     section { padding: 5rem 2rem; }
     .container { max-width: 1100px; margin: 0 auto; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem; }
-    .section-desc { color: #4a5568; margin-bottom: 2.5rem; max-width: 700px; }
+    .section-label {
+      font-size: .75rem; font-weight: 700; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--red); margin-bottom: .5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--navy); margin-bottom: 1rem; line-height: 1.2;
+    }
+    .section-desc { color: #4a5568; font-size: 1rem; line-height: 1.75; max-width: 720px; }
 
-    /* ── SDG GRID ── */
+    /* ── 17 SDGs GRID ── */
+    #overview { background: var(--white); }
     .sdg-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 1rem;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 1rem; margin-top: 2.5rem;
     }
     .sdg-card {
-      border-radius: 12px; padding: 1.2rem 1rem; text-align: center;
-      color: white; font-size: 0.75rem; font-weight: 600;
+      border-radius: 12px; padding: 1rem .75rem; text-align: center;
+      cursor: default; transition: transform .2s, box-shadow .2s;
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
     }
-    .sdg-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
-    
-    /* Warna spesifik untuk SDG 4 */
-    .c4 { background: #C5192D; outline: 3px solid var(--navy); outline-offset: 3px; }
-    .others { background: #ccc; color: #666; } /* Sederhanakan warna lain agar SDG 4 menonjol */
+    .sdg-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,.12); }
+    .sdg-card .icon { font-size: 1.8rem; }
+    .sdg-card .num { font-size: .65rem; font-weight: 700; letter-spacing: .06em; opacity: .7; }
+    .sdg-card .name { font-size: .72rem; font-weight: 600; line-height: 1.3; }
+    /* SDG colors */
+    .c1{background:#E5243B;color:#fff} .c2{background:#DDA63A;color:#fff}
+    .c3{background:#4C9F38;color:#fff} .c4{background:#C5192D;color:#fff}
+    .c5{background:#FF3A21;color:#fff} .c6{background:#26BDE2;color:#fff}
+    .c7{background:#FCC30B;color:#1D3557} .c8{background:#A21942;color:#fff}
+    .c9{background:#FD6925;color:#fff} .c10{background:#DD1367;color:#fff}
+    .c11{background:#FD9D24;color:#fff} .c12{background:#BF8B2E;color:#fff}
+    .c13{background:#3F7E44;color:#fff} .c14{background:#0A97D9;color:#fff}
+    .c15{background:#56C02B;color:#fff} .c16{background:#00689D;color:#fff}
+    .c17{background:#19486A;color:#fff}
 
     /* ── FACTS ── */
-    #fakta { background: var(--white); }
-    .facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    #fakta { background: var(--navy); }
+    #fakta .section-title { color: var(--white); }
+    #fakta .section-label { color: var(--gold); }
+    .facts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
     .fact-card {
-      background: var(--cream); padding: 2rem; border-radius: 16px;
-      border-left: 5px solid var(--gold);
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px; padding: 1.8rem; position: relative; overflow: hidden;
+      transition: border-color .2s, background .2s;
     }
-    .fact-card h3 { font-size: 2.5rem; color: var(--navy); margin-bottom: 0.5rem; }
-    .fact-card p { font-size: 0.95rem; color: #4a5568; }
+    .fact-card:hover { background: rgba(255,255,255,.09); border-color: var(--gold); }
+    .fact-card .fact-num {
+      font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900;
+      color: var(--gold); line-height: 1;
+    }
+    .fact-card p { margin-top: .6rem; color: rgba(241,250,238,.8); font-size: .92rem; line-height: 1.6; }
+    .fact-card .ref { margin-top: 1rem; font-size: .70rem; color: rgba(241,250,238,.45); font-style: italic; line-height: 1.55; border-top: 1px solid rgba(255,255,255,.08); padding-top: .75rem; }
+    .fact-card { cursor: pointer; }
+    .fact-card .read-more { margin-top: .8rem; font-size: .75rem; color: var(--gold); font-weight: 600; display: flex; align-items: center; gap: .3rem; }
+    .fact-card .read-more span::after { content: ' →'; transition: transform .2s; }
+    .fact-card:hover .read-more span::after { margin-left: 4px; }
 
-    footer { background: var(--navy); color: white; text-align: center; padding: 2rem; font-size: 0.8rem; }
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,.65); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white); border-radius: 20px; max-width: 680px; width: 100%;
+      max-height: 88vh; overflow-y: auto; position: relative;
+      box-shadow: 0 24px 64px rgba(0,0,0,.35);
+      animation: modalIn .3s ease both;
+    }
+    @keyframes modalIn { from { opacity:0; transform: scale(.94) translateY(20px); } to { opacity:1; transform: scale(1) translateY(0); } }
+    .modal-header { background: var(--navy); padding: 2rem 2rem 1.5rem; border-radius: 20px 20px 0 0; position: relative; }
+    .modal-header .modal-num { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .modal-header h2 { color: var(--white); font-size: 1.2rem; margin-top: .4rem; line-height: 1.3; }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,.15); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+    .modal-close:hover { background: rgba(255,255,255,.3); }
+    .modal-body { padding: 1.8rem 2rem; }
+    .modal-body h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin: 1.4rem 0 .5rem; }
+    .modal-body h3:first-child { margin-top: 0; }
+    .modal-body p { font-size: .92rem; color: #4a5568; line-height: 1.75; }
+    .modal-body ul { padding-left: 1.2rem; }
+    .modal-body ul li { font-size: .92rem; color: #4a5568; line-height: 1.75; margin-bottom: .3rem; }
+    .modal-source { background: var(--cream); border-radius: 12px; padding: 1rem 1.2rem; margin-top: 1.4rem; }
+    .modal-source .source-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin-bottom: .4rem; }
+    .modal-source p { font-size: .78rem; color: #555; font-style: italic; line-height: 1.6; }
+    .modal-tag { display: inline-block; background: rgba(197,25,45,.1); color: var(--red); font-size: .7rem; font-weight: 700; padding: .25rem .7rem; border-radius: 999px; margin-bottom: 1rem; }
+    @media (max-width: 480px) {
+      .modal-header { padding: 1.5rem 1.2rem 1.2rem; }
+      .modal-body { padding: 1.2rem; }
+      .modal-header .modal-num { font-size: 2.5rem; }
+    }
+
+    /* ── TARGET ── */
+    #target { background: var(--cream); }
+    .target-card {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      background: var(--white); border-radius: 16px; padding: 1.8rem;
+      margin-bottom: 1.2rem; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      transition: transform .2s;
+    }
+    .target-card:hover { transform: translateX(6px); }
+    .target-badge {
+      flex-shrink: 0; background: var(--red); color: #fff;
+      font-weight: 700; font-size: .85rem; width: 54px; height: 54px;
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    }
+    .target-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .4rem; }
+    .target-card p { font-size: .9rem; color: #4a5568; line-height: 1.65; }
+
+    /* ── DESIGN THINKING PAGES ── */
+    #design { background: var(--white); }
+    .dt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.2rem; margin-top: 2.5rem; }
+    .dt-card {
+      border-radius: 16px; padding: 1.8rem 1.4rem; text-align: center;
+      border: 2px solid transparent; transition: all .25s;
+    }
+    .dt-card:hover { transform: translateY(-5px); }
+    .dt-card .dt-icon { font-size: 2.4rem; margin-bottom: .8rem; }
+    .dt-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .dt-card p { font-size: .82rem; color: #4a5568; line-height: 1.6; }
+    .dt1{background:#FFF5F5;border-color:#FFB3B3} .dt1 h3{color:#C5192D}
+    .dt2{background:#FFF8EC;border-color:#FFD899} .dt2 h3{color:#A06000}
+    .dt3{background:#F0FFF4;border-color:#9AE6B4} .dt3 h3{color:#276749}
+    .dt4{background:#EBF8FF;border-color:#90CDF4} .dt4 h3{color:#2C5282}
+    .dt5{background:#FAF5FF;border-color:#D6BCFA} .dt5 h3{color:#553C9A}
+
+    /* ── REVIEW 17 SDGs & SWOT ── */
+    #review { background: var(--cream); }
+    .review-intro {
+      background: var(--navy); border-radius: 20px; padding: 2.5rem 2rem;
+      margin-bottom: 3rem; text-align: center;
+    }
+    .review-intro p { color: rgba(241,250,238,.8); font-size: .95rem; line-height: 1.75; max-width: 700px; margin: .8rem auto 0; }
+    .review-intro h3 { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.5rem; }
+
+    .swot-wrapper { margin-bottom: 3.5rem; }
+    .swot-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem;
+      padding-bottom: 1rem; border-bottom: 2px solid rgba(29,53,87,.1);
+    }
+    .swot-badge {
+      flex-shrink: 0; background: var(--red); color: #fff;
+      font-weight: 700; font-size: .9rem; min-width: 60px; height: 60px;
+      border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      letter-spacing: .03em;
+    }
+    .swot-header h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); }
+    .swot-header p { font-size: .85rem; color: #4a5568; margin-top: .2rem; line-height: 1.5; }
+
+    .swot-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+    .swot-cell {
+      border-radius: 16px; padding: 1.6rem;
+      position: relative; overflow: hidden;
+    }
+    .swot-cell::before {
+      content: attr(data-label);
+      position: absolute; right: 1rem; top: .8rem;
+      font-size: 3.5rem; font-weight: 900; opacity: .06;
+      font-family: 'Playfair Display', serif; line-height: 1;
+    }
+    .swot-cell h4 {
+      font-size: .7rem; font-weight: 700; letter-spacing: .15em;
+      text-transform: uppercase; margin-bottom: 1rem; opacity: .75;
+    }
+    .swot-cell ul { list-style: none; padding: 0; }
+    .swot-cell ul li {
+      font-size: .88rem; line-height: 1.6; padding: .4rem 0;
+      border-bottom: 1px solid rgba(0,0,0,.06); display: flex; gap: .6rem;
+    }
+    .swot-cell ul li:last-child { border-bottom: none; }
+    .swot-cell ul li::before { content: '›'; font-weight: 700; flex-shrink: 0; }
+
+    .sw-s { background: #EBF8F0; }
+    .sw-s h4 { color: #276749; }
+    .sw-s ul li::before { color: #276749; }
+    .sw-s::before { color: #276749; }
+
+    .sw-w { background: #FFF5F5; }
+    .sw-w h4 { color: #C53030; }
+    .sw-w ul li::before { color: #C53030; }
+    .sw-w::before { color: #C53030; }
+
+    .sw-o { background: #FFFBEB; }
+    .sw-o h4 { color: #B7791F; }
+    .sw-o ul li::before { color: #B7791F; }
+    .sw-o::before { color: #B7791F; }
+
+    .sw-t { background: #EBF4FF; }
+    .sw-t h4 { color: #2C5282; }
+    .sw-t ul li::before { color: #2C5282; }
+    .sw-t::before { color: #2C5282; }
+
+    @media (max-width: 600px) {
+      .swot-grid { grid-template-columns: 1fr; }
+      .swot-header { flex-direction: column; align-items: flex-start; gap: .8rem; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy); color: rgba(241,250,238,.5);
+      text-align: center; padding: 2rem; font-size: .82rem;
+    }
+    footer span { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s, transform .6s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--cream); border-radius: 2px;
+      transition: all .3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── RESPONSIVE: TABLET (≤ 768px) ── */
+    @media (max-width: 768px) {
+      /* Nav mobile */
+      .hamburger { display: flex; }
+      nav ul {
+        display: none; flex-direction: column; gap: 0;
+        position: absolute; top: 60px; left: 0; width: 100%;
+        background: var(--navy); padding: 1rem 0;
+        box-shadow: 0 8px 20px rgba(0,0,0,.3);
+      }
+      nav ul.open { display: flex; }
+      nav ul li a {
+        display: block; padding: .75rem 2rem;
+        font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,.06);
+      }
+
+      /* Hero */
+      .hero { padding: 5rem 1.5rem 3rem; }
+      .hero h1 { font-size: clamp(2rem, 9vw, 3.2rem); }
+      .hero p { font-size: .95rem; }
+      .sdg-number { font-size: 14rem; right: -20px; bottom: -20px; }
+
+      /* Sections */
+      section { padding: 3.5rem 1.2rem; }
+
+      /* SDG Grid — 3 kolom di tablet */
+      .sdg-grid { grid-template-columns: repeat(3, 1fr); gap: .7rem; }
+      .sdg-card { padding: .75rem .5rem; }
+      .sdg-card .icon { font-size: 1.4rem; }
+      .sdg-card .name { font-size: .65rem; }
+
+      /* Facts — 1 kolom */
+      .facts-grid { grid-template-columns: 1fr; }
+
+      /* Target card — stack vertikal */
+      .target-card { flex-direction: column; gap: 1rem; }
+      .target-badge { width: 44px; height: 44px; font-size: .8rem; }
+
+      /* Design Thinking — 2 kolom */
+      .dt-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── RESPONSIVE: MOBILE (≤ 480px) ── */
+    @media (max-width: 480px) {
+      nav { padding: 0 1.2rem; }
+      nav .logo { font-size: 1rem; }
+
+      .hero { padding: 4.5rem 1rem 2.5rem; }
+      .hero-badge { font-size: .65rem; }
+      .hero h1 { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+      .hero p { font-size: .88rem; }
+      .hero-btn { padding: .7rem 1.6rem; font-size: .88rem; }
+      .sdg-number { display: none; }
+
+      section { padding: 2.8rem 1rem; }
+      .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+
+      /* SDG Grid — 2 kolom di HP */
+      .sdg-grid { grid-template-columns: repeat(2, 1fr); gap: .6rem; }
+      .sdg-card { padding: .65rem .4rem; border-radius: 8px; }
+      .sdg-card .icon { font-size: 1.2rem; }
+      .sdg-card .num { font-size: .6rem; }
+      .sdg-card .name { font-size: .6rem; }
+
+      /* Facts */
+      .fact-card { padding: 1.3rem; }
+      .fact-card .fact-num { font-size: 2.2rem; }
+
+      /* Target */
+      .target-card { padding: 1.2rem; }
+      .target-card h3 { font-size: .92rem; }
+      .target-card p { font-size: .82rem; }
+
+      /* Design Thinking — 1 kolom di HP kecil */
+      .dt-grid { grid-template-columns: 1fr; }
+      .dt-card { padding: 1.4rem 1.2rem; }
+
+      footer { padding: 1.5rem 1rem; font-size: .75rem; }
+    }
   </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="logo">SDG 4 · Edukasi</div>
-  <ul>
-    <li><a href="#overview">Tentang SDGs</a></li>
-    <li><a href="#fakta">Fakta Indonesia</a></li>
+  <div class="logo">SDG 4 · Indonesia</div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu">
+    <li><a href="#overview" class="nav-link">Overview</a></li>
+    <li><a href="#fakta" class="nav-link">Fakta & Angka</a></li>
+    <li><a href="#target" class="nav-link">Target</a></li>
+    <li><a href="#design" class="nav-link">Design Thinking</a></li>
+    <li><a href="#review" class="nav-link">Review SDGs</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">Tujuan 4</div>
-  <h1>Pendidikan <span>Berkualitas</span></h1>
-  <p>Memastikan pendidikan inklusif dan merata serta mendukung kesempatan belajar seumur hidup bagi semua.</p>
+  <div class="hero-badge">Sustainable Development Goal</div>
+  <h1>Pendidikan<br/><span>Berkualitas</span><br/>untuk Semua</h1>
+  <p>SDG 4 bertujuan memastikan pendidikan yang inklusif, merata, dan berkualitas serta mendorong kesempatan belajar seumur hidup bagi semua orang.</p>
+  <a href="#overview" class="hero-btn">Jelajahi →</a>
+  <div class="sdg-number">4</div>
 </section>
 
+<!-- OVERVIEW: 17 SDGs -->
 <section id="overview">
   <div class="container">
-    <h2 class="section-title">17 Agenda Global</h2>
-    <p class="section-desc">SDGs adalah kesepakatan global untuk menjaga keberlangsungan kehidupan manusia dan planet bumi.</p>
-    
+    <div class="section-label reveal">17 Tujuan Pembangunan Berkelanjutan</div>
+    <h2 class="section-title reveal">Agenda Global PBB 2030</h2>
+    <p class="section-desc reveal">PBB menetapkan 17 SDGs sebagai cetak biru pembangunan berkelanjutan yang disepakati oleh seluruh negara anggota pada tahun 2015 untuk dicapai pada 2030.</p>
     <div class="sdg-grid">
-      <div class="sdg-card others"><span class="icon">🚫</span>SDG 1</div>
-      <div class="sdg-card others"><span class="icon">🌾</span>SDG 2</div>
-      <div class="sdg-card others"><span class="icon">❤️</span>SDG 3</div>
-      <div class="sdg-card c4"><span class="icon">📚</span>SDG 4: Pendidikan</div>
-      <div class="sdg-card others"><span class="icon">⚥</span>SDG 5</div>
-      <div class="sdg-card others"><span class="icon">💧</span>SDG 6</div>
-      <div class="sdg-card others"><span class="icon">⚡</span>SDG 7</div>
-      </div>
+      <div class="sdg-card c1 reveal"><div class="icon">🚫</div><div class="num">SDG 1</div><div class="name">Tanpa Kemiskinan</div></div>
+      <div class="sdg-card c2 reveal"><div class="icon">🌾</div><div class="num">SDG 2</div><div class="name">Tanpa Kelaparan</div></div>
+      <div class="sdg-card c3 reveal"><div class="icon">❤️</div><div class="num">SDG 3</div><div class="name">Kesehatan Baik</div></div>
+      <div class="sdg-card c4 reveal" style="outline: 3px solid #fff; outline-offset: 3px;"><div class="icon">📚</div><div class="num">SDG 4</div><div class="name">Pendidikan Berkualitas</div></div>
+      <div class="sdg-card c5 reveal"><div class="icon">⚥</div><div class="num">SDG 5</div><div class="name">Kesetaraan Gender</div></div>
+      <div class="sdg-card c6 reveal"><div class="icon">💧</div><div class="num">SDG 6</div><div class="name">Air Bersih</div></div>
+      <div class="sdg-card c7 reveal"><div class="icon">⚡</div><div class="num">SDG 7</div><div class="name">Energi Bersih</div></div>
+      <div class="sdg-card c8 reveal"><div class="icon">💼</div><div class="num">SDG 8</div><div class="name">Pekerjaan Layak</div></div>
+      <div class="sdg-card c9 reveal"><div class="icon">🏭</div><div class="num">SDG 9</div><div class="name">Industri & Inovasi</div></div>
+      <div class="sdg-card c10 reveal"><div class="icon">⚖️</div><div class="num">SDG 10</div><div class="name">Kurangi Kesenjangan</div></div>
+      <div class="sdg-card c11 reveal"><div class="icon">🏙️</div><div class="num">SDG 11</div><div class="name">Kota Berkelanjutan</div></div>
+      <div class="sdg-card c12 reveal"><div class="icon">♻️</div><div class="num">SDG 12</div><div class="name">Konsumsi Bertanggung Jawab</div></div>
+      <div class="sdg-card c13 reveal"><div class="icon">🌍</div><div class="num">SDG 13</div><div class="name">Penanganan Iklim</div></div>
+      <div class="sdg-card c14 reveal"><div class="icon">🌊</div><div class="num">SDG 14</div><div class="name">Ekosistem Laut</div></div>
+      <div class="sdg-card c15 reveal"><div class="icon">🌿</div><div class="num">SDG 15</div><div class="name">Ekosistem Daratan</div></div>
+      <div class="sdg-card c16 reveal"><div class="icon">🕊️</div><div class="num">SDG 16</div><div class="name">Perdamaian & Keadilan</div></div>
+      <div class="sdg-card c17 reveal"><div class="icon">🤝</div><div class="num">SDG 17</div><div class="name">Kemitraan Global</div></div>
+    </div>
   </div>
 </section>
+
+<!-- FAKTA & ANGKA -->
+<section id="fakta">
+  <div class="container">
+    <div class="section-label reveal">Data & Statistik</div>
+    <h2 class="section-title reveal">5 Fakta SDG 4 di Indonesia</h2>
+    <div class="facts-grid">
+
+      <div class="fact-card reveal" onclick="openModal('f1')">
+        <div class="fact-num">96,35%</div>
+        <p>Tingkat melek huruf penduduk Indonesia usia 15 tahun ke atas pada 2022, mencerminkan kemajuan literasi namun tantangan tetap ada di daerah 3T.</p>
+        <div class="read-more"><span>Lihat detail</span></div>
+        <div class="ref">Badan Pusat Statistik. (2022). <em>Statistik pendidikan Indonesia 2022</em>. BPS RI.</div>
+      </div>
+
+      <div class="fact-card reveal" onclick="openModal('f2')">
+        <div class="fact-num">3,67 Jt</div>
+        <p>Jumlah anak tidak sekolah (usia 7–18 tahun) di Indonesia pada 2023, berdasarkan data Susenas BPS, mayoritas dari keluarga miskin dan daerah terpencil.</p>
+        <div class="read-more"><span>Lihat detail</span></div>
+        <div class="ref">Badan Pusat Statistik. (2023). <em>Survei Sosial Ekonomi Nasional (Susenas) Maret 2023</em>. BPS RI.</div>
+      </div>
+
+      <div class="fact-card reveal" onclick="openModal('f3')">
+        <div class="fact-num">APK SMA 85,45%</div>
+        <p>Angka Partisipasi Kasar (APK) SMA/sederajat nasional Indonesia tahun 2023, meningkat dari tahun sebelumnya namun masih di bawah target Renstra 2024.</p>
+        <div class="read-more"><span>Lihat detail</span></div>
+        <div class="ref">Badan Pusat Statistik. (2023). <em>Indikator pendidikan 1994–2024</em>. BPS RI.</div>
+      </div>
+
+      <div class="fact-card reveal" onclick="openModal('f4')">
+        <div class="fact-num">Rp 612,2T</div>
+        <p>Anggaran pendidikan Indonesia pada APBN 2023, setara 20% dari total APBN sesuai amanat konstitusi. Naik menjadi Rp 665T pada APBN 2024.</p>
+        <div class="read-more"><span>Lihat detail</span></div>
+        <div class="ref">Kementerian Keuangan RI. (2023). <em>Nota keuangan dan APBN tahun anggaran 2023</em>. Kemenkeu RI.</div>
+      </div>
+
+      <div class="fact-card reveal" onclick="openModal('f5')">
+        <div class="fact-num">Peringkat 66 / 81</div>
+        <p>Posisi Indonesia dalam PISA 2022 dari 81 negara. Skor: Matematika 366, Membaca 359, Sains 383 — naik 5–6 peringkat dibanding PISA 2018.</p>
+        <div class="read-more"><span>Lihat detail</span></div>
+        <div class="ref">Organisation for Economic Co-operation and Development. (2023). <em>PISA 2022 results</em> (Vol. I). OECD Publishing. https://doi.org/10.1787/53f23881-en</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-f1" onclick="closeModal(event, 'f1')">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModalBtn('f1')">✕</button>
+      <div class="modal-num">96,35%</div>
+      <h2>Tingkat Melek Huruf Indonesia (2022)</h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">📖 Literasi</div>
+      <h3>Temuan Utama</h3>
+      <p>Angka Melek Huruf (AMH) penduduk Indonesia usia 15 tahun ke atas mencapai <strong>96,35%</strong> pada tahun 2022. Artinya, 96 dari setiap 100 penduduk dewasa Indonesia mampu membaca dan menulis.</p>
+      <h3>Konteks & Analisis</h3>
+      <ul>
+        <li>AMH Indonesia terus meningkat dari tahun ke tahun, namun kesenjangan antara perkotaan dan perdesaan masih signifikan</li>
+        <li>AMH perdesaan hanya 93,65% (2021), jauh di bawah perkotaan yang mencapai >98%</li>
+        <li>Provinsi Papua, Papua Barat, dan NTT masih mencatat AMH terendah nasional</li>
+        <li>AMH pemuda (15–24 tahun) jauh lebih tinggi yaitu 99,74% (2022), menunjukkan generasi muda lebih melek huruf</li>
+      </ul>
+      <h3>Relevansi terhadap SDG 4</h3>
+      <p>Peningkatan AMH merupakan fondasi pencapaian SDG 4.6 (memastikan semua remaja dan sebagian besar orang dewasa mencapai literasi dan numerasi pada 2030).</p>
+      <div class="modal-source">
+        <div class="source-label">Referensi</div>
+        <p>Badan Pusat Statistik. (2022). <em>Statistik pendidikan Indonesia 2022</em>. BPS RI. https://www.bps.go.id/id/publication/2022/11/25/a80bdf8c85bc28a4e6566661/statistik-pendidikan-2022.html</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-f2" onclick="closeModal(event, 'f2')">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModalBtn('f2')">✕</button>
+      <div class="modal-num">3,67 Jt</div>
+      <h2>Anak Tidak Sekolah di Indonesia (2023)</h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">🏫 Akses Pendidikan</div>
+      <h3>Temuan Utama</h3>
+      <p>Berdasarkan Survei Sosial Ekonomi Nasional (Susenas) Maret 2023 oleh BPS, terdapat <strong>sekitar 3,67 juta anak</strong> usia 7–18 tahun yang tidak bersekolah di Indonesia.</p>
+      <h3>Faktor Penyebab</h3>
+      <ul>
+        <li>Faktor ekonomi: biaya pendidikan yang masih dianggap berat oleh keluarga kurang mampu</li>
+        <li>Geografis: keterbatasan akses sekolah di daerah 3T (Terdepan, Terluar, Tertinggal)</li>
+        <li>Sosial-budaya: pernikahan dini, terutama pada anak perempuan di daerah tertentu</li>
+        <li>Anak berkebutuhan khusus yang belum terlayani secara optimal</li>
+      </ul>
+      <h3>Upaya Pemerintah</h3>
+      <p>Program Indonesia Pintar (PIP) telah menjangkau lebih dari 21 juta siswa pada 2024 untuk mencegah putus sekolah akibat faktor ekonomi.</p>
+      <div class="modal-source">
+        <div class="source-label">Referensi</div>
+        <p>Badan Pusat Statistik. (2023). <em>Survei Sosial Ekonomi Nasional (Susenas) Maret 2023: Indikator pendidikan</em>. BPS RI. https://www.bps.go.id</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-f3" onclick="closeModal(event, 'f3')">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModalBtn('f3')">✕</button>
+      <div class="modal-num">85,45%</div>
+      <h2>APK SMA/Sederajat Nasional (2023)</h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">🎓 Partisipasi Sekolah</div>
+      <h3>Temuan Utama</h3>
+      <p>Angka Partisipasi Kasar (APK) SMA/SMK/MA/sederajat secara nasional mencapai <strong>85,45%</strong> pada tahun 2023, meningkat dibanding tahun-tahun sebelumnya namun masih di bawah target Renstra Kemendikbudristek 2020–2024.</p>
+      <h3>Perbandingan Jenjang Pendidikan (2023)</h3>
+      <ul>
+        <li>APK SD/sederajat: 105,62% (melampaui 100% karena ada siswa di luar usia ideal)</li>
+        <li>APK SMP/sederajat: ~93%</li>
+        <li>APK SMA/sederajat: 85,45%</li>
+        <li>APK Perguruan Tinggi: ~31%</li>
+      </ul>
+      <h3>Interpretasi</h3>
+      <p>Semakin tinggi jenjang pendidikan, semakin rendah APK. Ini menunjukkan banyak siswa yang tidak melanjutkan sekolah ke jenjang yang lebih tinggi, terutama dari kelompok ekonomi bawah.</p>
+      <div class="modal-source">
+        <div class="source-label">Referensi</div>
+        <p>Badan Pusat Statistik. (2023). <em>Indikator pendidikan 1994–2024</em>. BPS RI. https://www.bps.go.id/en/statistics-table/1/MTUyNSMx/indikator-pendidikan-1994-2024.html</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-f4" onclick="closeModal(event, 'f4')">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModalBtn('f4')">✕</button>
+      <div class="modal-num">Rp 612,2T</div>
+      <h2>Anggaran Pendidikan APBN 2023</h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">💰 Anggaran</div>
+      <h3>Temuan Utama</h3>
+      <p>Pemerintah Indonesia mengalokasikan anggaran pendidikan sebesar <strong>Rp 612,23 triliun</strong> dalam APBN 2023, setara 20% dari total belanja negara sesuai amanat UUD 1945 dan UU Sisdiknas No. 20/2003.</p>
+      <h3>Tren Anggaran Pendidikan</h3>
+      <ul>
+        <li>APBN 2022: Rp 542,82 triliun</li>
+        <li>APBN 2023: Rp 612,23 triliun (+12,8%)</li>
+        <li>APBN 2024: Rp 665,02 triliun (+8,6%)</li>
+        <li>APBN 2025: Rp 724,26 triliun (+8,9%)</li>
+      </ul>
+      <h3>Tantangan</h3>
+      <p>Meski anggaran terus naik, kualitas pendidikan belum meningkat signifikan. Masih terdapat ketimpangan alokasi antara pusat dan daerah, serta tantangan efektivitas penggunaan anggaran di tingkat sekolah.</p>
+      <div class="modal-source">
+        <div class="source-label">Referensi</div>
+        <p>Kementerian Keuangan Republik Indonesia. (2023). <em>Nota keuangan dan Anggaran Pendapatan dan Belanja Negara tahun anggaran 2023</em>. Kemenkeu RI. https://www.kemenkeu.go.id</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-f5" onclick="closeModal(event, 'f5')">
+  <div class="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModalBtn('f5')">✕</button>
+      <div class="modal-num">#66 / 81</div>
+      <h2>Hasil PISA 2022 Indonesia</h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">📊 PISA OECD 2022</div>
+      <h3>Skor Indonesia di PISA 2022</h3>
+      <ul>
+        <li><strong>Matematika:</strong> 366 poin (rata-rata OECD: 472)</li>
+        <li><strong>Membaca:</strong> 359 poin (rata-rata OECD: 476)</li>
+        <li><strong>Sains:</strong> 383 poin (rata-rata OECD: 485)</li>
+      </ul>
+      <h3>Peringkat & Perbandingan</h3>
+      <p>Indonesia berada di <strong>peringkat 66 dari 81 negara</strong> peserta PISA 2022. Meski skor turun 12–13 poin dari 2018 akibat dampak pandemi, peringkat Indonesia naik 5–6 posisi karena negara lain juga mengalami penurunan lebih besar.</p>
+      <h3>Konteks ASEAN</h3>
+      <ul>
+        <li>Singapura: Peringkat 1 dunia (skor total 1.679)</li>
+        <li>Vietnam: Peringkat 2 ASEAN</li>
+        <li>Indonesia: Peringkat 6 ASEAN (skor total 1.108)</li>
+      </ul>
+      <div class="modal-source">
+        <div class="source-label">Referensi</div>
+        <p>Organisation for Economic Co-operation and Development. (2023). <em>PISA 2022 results (Volume I): The state of learning and equity in education</em>. OECD Publishing. https://doi.org/10.1787/53f23881-en</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TARGET SDG 4 -->
+<section id="target">
+  <div class="container">
+    <div class="section-label reveal">Fokus Proyek</div>
+    <h2 class="section-title reveal">Target SDG 4 yang Dipilih</h2>
+    <p class="section-desc reveal">Dari seluruh target SDG 4, proyek ini berfokus pada dua target utama yang paling relevan dengan kondisi pendidikan di Indonesia.</p>
+    <div style="margin-top:2rem">
+      <div class="target-card reveal">
+        <div class="target-badge">4.1</div>
+        <div>
+          <h3>Pendidikan Dasar & Menengah Gratis dan Berkualitas</h3>
+          <p>Pada 2030, memastikan semua anak perempuan dan laki-laki menyelesaikan pendidikan dasar dan menengah yang gratis, setara, dan berkualitas, yang mengarah pada hasil pembelajaran yang relevan dan efektif.</p>
+        </div>
+      </div>
+      <div class="target-card reveal">
+        <div class="target-badge">4.4</div>
+        <div>
+          <h3>Peningkatan Keterampilan Teknis & Vokasional</h3>
+          <p>Pada 2030, secara substansial meningkatkan jumlah pemuda dan orang dewasa yang memiliki keterampilan relevan, termasuk keterampilan teknis dan vokasional, untuk pekerjaan, pekerjaan layak, dan kewirausahaan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN THINKING PAGES -->
+<section id="design">
+  <div class="container">
+    <div class="section-label reveal">Metodologi</div>
+    <h2 class="section-title reveal">Design Thinking</h2>
+    <p class="section-desc reveal">Website ini dibangun menggunakan pendekatan Design Thinking 5 tahap untuk memastikan solusi yang ditawarkan benar-benar berpusat pada kebutuhan pengguna.</p>
+    <div class="dt-grid">
+      <div class="dt-card dt1 reveal">
+        <div class="dt-icon">🔍</div>
+        <h3>Empati & Riset</h3>
+        <p>Memahami tantangan nyata pendidikan di Indonesia melalui data lapangan, wawancara, dan observasi terhadap siswa dan guru di daerah terpencil.</p>
+      </div>
+      <div class="dt-card dt2 reveal">
+        <div class="dt-icon">💡</div>
+        <h3>Ideasi</h3>
+        <p>Menghasilkan berbagai ide inovatif untuk meningkatkan akses dan kualitas pendidikan melalui teknologi, kebijakan, dan kolaborasi komunitas.</p>
+      </div>
+      <div class="dt-card dt3 reveal">
+        <div class="dt-icon">🛠️</div>
+        <h3>Prototipe</h3>
+        <p>Membangun model platform pembelajaran digital yang terjangkau dan dapat diakses offline untuk mendukung pendidikan di daerah dengan keterbatasan internet.</p>
+      </div>
+      <div class="dt-card dt4 reveal">
+        <div class="dt-icon">🧪</div>
+        <h3>Pengujian & Review</h3>
+        <p>Menguji prototipe bersama siswa dan guru di lapangan, mengumpulkan umpan balik, dan melakukan perbaikan iteratif berdasarkan hasil evaluasi.</p>
+      </div>
+      <div class="dt-card dt5 reveal">
+        <div class="dt-icon">🪞</div>
+        <h3>Refleksi</h3>
+        <p>Mengevaluasi dampak solusi terhadap pencapaian SDG 4, mengidentifikasi hambatan, dan merumuskan langkah lanjutan yang lebih efektif dan berkelanjutan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEW 17 SDGs & SWOT ANALYSIS -->
+<section id="review">
+  <div class="container">
+    <div class="section-label reveal">Review 17 SDGs</div>
+    <h2 class="section-title reveal">Analisis SWOT: 2 Target SDG 4</h2>
+    <p class="section-desc reveal">Dari 17 SDGs yang ditetapkan PBB, proyek ini berfokus pada <strong>SDG 4 – Pendidikan Berkualitas</strong>. Berikut adalah analisis SWOT (Kekuatan, Kelemahan, Peluang, dan Ancaman) untuk dua target utama yang dipilih, dalam konteks Indonesia.</p>
+
+    <div class="review-intro reveal" style="margin-top:2rem">
+      <h3>Mengapa SDG 4?</h3>
+      <p>SDG 4 (Pendidikan Berkualitas) dipilih karena pendidikan adalah fondasi dari seluruh 17 tujuan SDGs. Tanpa akses pendidikan yang merata dan berkualitas, pencapaian tujuan lain seperti pengurangan kemiskinan (SDG 1), kesetaraan gender (SDG 5), hingga pertumbuhan ekonomi (SDG 8) akan sangat sulit diwujudkan — khususnya di Indonesia yang memiliki tantangan geografis dan kesenjangan yang kompleks.</p>
+    </div>
+
+    <!-- SWOT Target 4.1 -->
+    <div class="swot-wrapper" style="margin-top:3rem">
+      <div class="swot-header reveal">
+        <div class="swot-badge">4.1</div>
+        <div>
+          <h3>Target 4.1 – Pendidikan Dasar & Menengah Gratis dan Berkualitas</h3>
+          <p>Pada 2030, memastikan semua anak perempuan dan laki-laki menyelesaikan pendidikan dasar dan menengah yang gratis, setara, dan berkualitas.</p>
+        </div>
+      </div>
+      <div class="swot-grid">
+        <div class="swot-cell sw-s reveal" data-label="S">
+          <h4>Kekuatan (Strengths)</h4>
+          <ul>
+            <li>Program Wajib Belajar 12 Tahun sudah ditetapkan dalam kebijakan nasional</li>
+            <li>Dana BOS (Bantuan Operasional Sekolah) tersedia di seluruh sekolah negeri</li>
+            <li>APM (Angka Partisipasi Murni) SD sudah mencapai >97%, menunjukkan akses dasar yang luas</li>
+            <li>Kurikulum Merdeka memberikan fleksibilitas bagi sekolah dan guru dalam pembelajaran</li>
+          </ul>
+        </div>
+        <div class="swot-cell sw-w reveal" data-label="W">
+          <h4>Kelemahan (Weaknesses)</h4>
+          <ul>
+            <li>Kualitas pendidikan sangat tidak merata antara Jawa dan daerah 3T (Terdepan, Terluar, Tertinggal)</li>
+            <li>Kekurangan guru berkualitas di daerah pedesaan dan terpencil</li>
+            <li>Infrastruktur sekolah banyak yang masih rusak atau tidak layak</li>
+            <li>Angka putus sekolah di jenjang SMP–SMA masih cukup tinggi, terutama karena faktor ekonomi</li>
+          </ul>
+        </div>
+        <div class="swot-cell sw-o reveal" data-label="O">
+          <h4>Peluang (Opportunities)</h4>
+          <ul>
+            <li>Bonus demografi Indonesia 2030 menjadi pendorong investasi besar di sektor pendidikan</li>
+            <li>Teknologi digital (e-learning, platform daring) membuka akses ke daerah terpencil</li>
+            <li>Kolaborasi dengan lembaga internasional (UNICEF, UNESCO, Bank Dunia) untuk pendanaan</li>
+            <li>Program beasiswa pemerintah (KIP-S) yang terus diperluas cakupannya</li>
+          </ul>
+        </div>
+        <div class="swot-cell sw-t reveal" data-label="T">
+          <h4>Ancaman (Threats)</h4>
+          <ul>
+            <li>Kesenjangan digital yang besar antara perkotaan dan pedesaan memperburuk ketimpangan</li>
+            <li>Tekanan ekonomi keluarga miskin memaksa anak berhenti sekolah untuk bekerja</li>
+            <li>Bencana alam (gempa, banjir) kerap merusak infrastruktur pendidikan di berbagai wilayah</li>
+            <li>Potensi penurunan anggaran pendidikan akibat tekanan fiskal atau prioritas kebijakan lain</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SWOT Target 4.4 -->
+    <div class="swot-wrapper">
+      <div class="swot-header reveal">
+        <div class="swot-badge">4.4</div>
+        <div>
+          <h3>Target 4.4 – Peningkatan Keterampilan Teknis & Vokasional</h3>
+          <p>Pada 2030, secara substansial meningkatkan jumlah pemuda dan orang dewasa yang memiliki keterampilan teknis dan vokasional untuk pekerjaan layak dan kewirausahaan.</p>
+        </div>
+      </div>
+      <div class="swot-grid">
+        <div class="swot-cell sw-s reveal" data-label="S">
+          <h4>Kekuatan (Strengths)</h4>
+          <ul>
+            <li>Jaringan SMK (Sekolah Menengah Kejuruan) yang luas, tersebar di seluruh provinsi Indonesia</li>
+            <li>Program "SMK Pusat Keunggulan" yang menghubungkan sekolah vokasi dengan industri secara langsung</li>
+            <li>Balai Latihan Kerja (BLK) tersebar di berbagai kabupaten/kota untuk pelatihan keterampilan non-formal</li>
+            <li>Minat pemuda terhadap kewirausahaan digital yang semakin tinggi</li>
+          </ul>
+        </div>
+        <div class="swot-cell sw-w reveal" data-label="W">
+          <h4>Kelemahan (Weaknesses)</h4>
+          <ul>
+            <li>Kurikulum vokasi sering tertinggal dibanding kebutuhan nyata dunia industri yang terus berkembang</li>
+            <li>Peralatan praktik di banyak SMK sudah usang dan tidak sesuai standar industri modern</li>
+            <li>Stigma sosial bahwa lulusan vokasi lebih rendah dari lulusan perguruan tinggi masih kuat di masyarakat</li>
+            <li>Ketidaksesuaian antara kompetensi lulusan SMK dengan kebutuhan pasar kerja (mismatch)</li>
+          </ul>
+        </div>
+        <div class="swot-cell sw-o reveal" data-label="O">
+          <h4>Peluang (Opportunities)</h4>
+          <ul>
+            <li>Pertumbuhan sektor digital, e-commerce, dan teknologi membuka banyak lapangan kerja baru</li>
+            <li>Program Magang Industri dan Teaching Factory yang mendorong kolaborasi sekolah-perusahaan</li>
+            <li>Dana Abadi Vokasi yang disediakan pemerintah untuk pembaruan kurikulum dan peralatan</li>
+            <li>Potensi ekspor tenaga kerja terampil ke negara-negara yang kekurangan SDM teknis</li>
+          </ul>
+        </div>
+        <div class="swot-cell sw-t reveal" data-label="T">
+          <h4>Ancaman (Threats)</h4>
+          <ul>
+            <li>Otomatisasi dan kecerdasan buatan (AI) berpotensi menggantikan pekerjaan berbasis keterampilan dasar</li>
+            <li>Persaingan ketat dari tenaga kerja asing yang lebih terampil di era pasar global terbuka</li>
+            <li>Perubahan kebutuhan industri yang sangat cepat membuat kurikulum mudah menjadi usang</li>
+            <li>Tingkat pengangguran lulusan SMK yang masih relatif tinggi menurunkan minat masyarakat</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <p>&copy; 2026 Pengenalan SDG 4 Indonesia</p>
+  <p>Proyek SDG 4 · Pendidikan Berkualitas untuk Indonesia &nbsp;|&nbsp; <span>UN Sustainable Development Goals 2030</span></p>
+  <p style="margin-top:.4rem">Tugas STEM Project Arnando Michael Ginting · 2026</p>
 </footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navMenu.classList.remove('open');
+    });
+  });
+
+  // Modal functions
+  function openModal(id) {
+    document.getElementById('modal-' + id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModalBtn(id) {
+    document.getElementById('modal-' + id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeModal(event, id) {
+    if (event.target === document.getElementById('modal-' + id)) {
+      closeModalBtn(id);
+    }
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(m => {
+        m.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+</script>
 </body>
 </html>
