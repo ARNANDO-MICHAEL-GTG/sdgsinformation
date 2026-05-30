@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SDG 4 – Pendidikan Berkualitas</title>
+  <title>SDG 3 – Kehidupan Sehat dan Sejahtera</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -129,9 +129,8 @@
     .fact-card p { margin-top: .6rem; color: rgba(241,250,238,.8); font-size: .92rem; line-height: 1.6; }
     .fact-card .ref { margin-top: 1rem; font-size: .70rem; color: rgba(241,250,238,.45); font-style: italic; line-height: 1.55; border-top: 1px solid rgba(255,255,255,.08); padding-top: .75rem; }
     .fact-card { cursor: pointer; }
-    .fact-card .read-more { margin-top: .8rem; font-size: .75rem; color: var(--gold); font-weight: 600; display: flex; align-items: center; gap: .3rem; }
-    .fact-card .read-more span::after { content: ' →'; transition: transform .2s; }
-    .fact-card:hover .read-more span::after { margin-left: 4px; }
+    .fact-card .read-more { margin-top: .8rem; font-size: .75rem; color: var(--gold); font-weight: 600; }
+    .fact-card .read-more span::after { content: ' →'; }
 
     /* ── MODAL ── */
     .modal-overlay {
@@ -142,31 +141,27 @@
     .modal-overlay.open { display: flex; }
     .modal {
       background: var(--white); border-radius: 20px; max-width: 680px; width: 100%;
-      max-height: 88vh; overflow-y: auto; position: relative;
+      max-height: 88vh; overflow-y: auto;
       box-shadow: 0 24px 64px rgba(0,0,0,.35);
       animation: modalIn .3s ease both;
     }
-    @keyframes modalIn { from { opacity:0; transform: scale(.94) translateY(20px); } to { opacity:1; transform: scale(1) translateY(0); } }
+    @keyframes modalIn { from{opacity:0;transform:scale(.94) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
     .modal-header { background: var(--navy); padding: 2rem 2rem 1.5rem; border-radius: 20px 20px 0 0; position: relative; }
-    .modal-header .modal-num { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: var(--gold); line-height: 1; }
-    .modal-header h2 { color: var(--white); font-size: 1.2rem; margin-top: .4rem; line-height: 1.3; }
-    .modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,.15); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: background .2s; }
-    .modal-close:hover { background: rgba(255,255,255,.3); }
-    .modal-body { padding: 1.8rem 2rem; }
-    .modal-body h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin: 1.4rem 0 .5rem; }
-    .modal-body h3:first-child { margin-top: 0; }
-    .modal-body p { font-size: .92rem; color: #4a5568; line-height: 1.75; }
-    .modal-body ul { padding-left: 1.2rem; }
-    .modal-body ul li { font-size: .92rem; color: #4a5568; line-height: 1.75; margin-bottom: .3rem; }
-    .modal-source { background: var(--cream); border-radius: 12px; padding: 1rem 1.2rem; margin-top: 1.4rem; }
-    .modal-source .source-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin-bottom: .4rem; }
-    .modal-source p { font-size: .78rem; color: #555; font-style: italic; line-height: 1.6; }
-    .modal-tag { display: inline-block; background: rgba(197,25,45,.1); color: var(--red); font-size: .7rem; font-weight: 700; padding: .25rem .7rem; border-radius: 999px; margin-bottom: 1rem; }
-    @media (max-width: 480px) {
-      .modal-header { padding: 1.5rem 1.2rem 1.2rem; }
-      .modal-body { padding: 1.2rem; }
-      .modal-header .modal-num { font-size: 2.5rem; }
-    }
+    .modal-header .modal-num { font-family:'Playfair Display',serif; font-size:3.5rem; font-weight:900; color:var(--gold); line-height:1; }
+    .modal-header h2 { color:var(--white); font-size:1.2rem; margin-top:.4rem; line-height:1.3; }
+    .modal-close { position:absolute; top:1rem; right:1rem; background:rgba(255,255,255,.15); border:none; color:#fff; width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+    .modal-close:hover { background:rgba(255,255,255,.3); }
+    .modal-body { padding:1.8rem 2rem; }
+    .modal-body h3 { font-size:1rem; font-weight:700; color:var(--navy); margin:1.4rem 0 .5rem; }
+    .modal-body h3:first-child { margin-top:0; }
+    .modal-body p { font-size:.92rem; color:#4a5568; line-height:1.75; }
+    .modal-body ul { padding-left:1.2rem; }
+    .modal-body ul li { font-size:.92rem; color:#4a5568; line-height:1.75; margin-bottom:.3rem; }
+    .modal-source { background:var(--cream); border-radius:12px; padding:1rem 1.2rem; margin-top:1.4rem; }
+    .modal-source .source-label { font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--red); margin-bottom:.4rem; }
+    .modal-source p { font-size:.78rem; color:#555; font-style:italic; line-height:1.6; }
+    .modal-tag { display:inline-block; background:rgba(76,159,56,.12); color:#276749; font-size:.7rem; font-weight:700; padding:.25rem .7rem; border-radius:999px; margin-bottom:1rem; }
+    @media(max-width:480px){.modal-header{padding:1.5rem 1.2rem 1.2rem}.modal-body{padding:1.2rem}.modal-header .modal-num{font-size:2.5rem}}
 
     /* ── TARGET ── */
     #target { background: var(--cream); }
@@ -245,11 +240,17 @@
     }
     .swot-cell ul { list-style: none; padding: 0; }
     .swot-cell ul li {
-      font-size: .88rem; line-height: 1.6; padding: .4rem 0;
-      border-bottom: 1px solid rgba(0,0,0,.06); display: flex; gap: .6rem;
+      font-size: .88rem; line-height: 1.6; padding: .5rem 0;
+      border-bottom: 1px solid rgba(0,0,0,.06); display: flex; flex-direction: column; gap: .25rem;
     }
     .swot-cell ul li:last-child { border-bottom: none; }
-    .swot-cell ul li::before { content: '›'; font-weight: 700; flex-shrink: 0; }
+    .swot-cell ul li::before { content: '› '; font-weight: 700; }
+    .swot-ref {
+      display: block; font-size: .68rem; font-style: italic;
+      opacity: .6; line-height: 1.5; padding: .3rem .6rem;
+      border-left: 2px solid currentColor;
+      background: rgba(0,0,0,.04); border-radius: 0 4px 4px 0;
+    }
 
     .sw-s { background: #EBF8F0; }
     .sw-s h4 { color: #276749; }
@@ -390,7 +391,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">SDG 4 · Indonesia</div>
+  <div class="logo">SDG 3 · Indonesia</div>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -406,10 +407,10 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">Sustainable Development Goal</div>
-  <h1>Pendidikan<br/><span>Berkualitas</span><br/>untuk Semua</h1>
-  <p>SDG 4 bertujuan memastikan pendidikan yang inklusif, merata, dan berkualitas serta mendorong kesempatan belajar seumur hidup bagi semua orang.</p>
+  <h1>Kehidupan<br/><span>Sehat</span><br/>dan Sejahtera</h1>
+  <p>SDG 3 bertujuan menjamin kehidupan yang sehat dan mendukung kesejahteraan bagi semua orang di segala usia — dari bayi hingga lansia.</p>
   <a href="#overview" class="hero-btn">Jelajahi →</a>
-  <div class="sdg-number">4</div>
+  <div class="sdg-number">3</div>
 </section>
 
 <!-- OVERVIEW: 17 SDGs -->
@@ -421,8 +422,8 @@
     <div class="sdg-grid">
       <div class="sdg-card c1 reveal"><div class="icon">🚫</div><div class="num">SDG 1</div><div class="name">Tanpa Kemiskinan</div></div>
       <div class="sdg-card c2 reveal"><div class="icon">🌾</div><div class="num">SDG 2</div><div class="name">Tanpa Kelaparan</div></div>
-      <div class="sdg-card c3 reveal"><div class="icon">❤️</div><div class="num">SDG 3</div><div class="name">Kesehatan Baik</div></div>
-      <div class="sdg-card c4 reveal" style="outline: 3px solid #fff; outline-offset: 3px;"><div class="icon">📚</div><div class="num">SDG 4</div><div class="name">Pendidikan Berkualitas</div></div>
+      <div class="sdg-card c3 reveal" style="outline: 3px solid #fff; outline-offset: 3px;"><div class="icon">❤️</div><div class="num">SDG 3</div><div class="name">Kehidupan Sehat & Sejahtera</div></div>
+      <div class="sdg-card c4 reveal"><div class="icon">📚</div><div class="num">SDG 4</div><div class="name">Pendidikan Berkualitas</div></div>
       <div class="sdg-card c5 reveal"><div class="icon">⚥</div><div class="num">SDG 5</div><div class="name">Kesetaraan Gender</div></div>
       <div class="sdg-card c6 reveal"><div class="icon">💧</div><div class="num">SDG 6</div><div class="name">Air Bersih</div></div>
       <div class="sdg-card c7 reveal"><div class="icon">⚡</div><div class="num">SDG 7</div><div class="name">Energi Bersih</div></div>
@@ -444,211 +445,212 @@
 <section id="fakta">
   <div class="container">
     <div class="section-label reveal">Data & Statistik</div>
-    <h2 class="section-title reveal">5 Fakta SDG 4 di Indonesia</h2>
+    <h2 class="section-title reveal">5 Fakta SDG 3 di Indonesia</h2>
+    <p class="section-desc reveal" style="color:rgba(241,250,238,.6)">Klik setiap kartu untuk melihat data lengkap beserta sumber referensinya.</p>
     <div class="facts-grid">
 
       <div class="fact-card reveal" onclick="openModal('f1')">
-        <div class="fact-num">96,35%</div>
-        <p>Tingkat melek huruf penduduk Indonesia usia 15 tahun ke atas pada 2022, mencerminkan kemajuan literasi namun tantangan tetap ada di daerah 3T.</p>
-        <div class="read-more"><span>Lihat detail</span></div>
-        <div class="ref">Badan Pusat Statistik. (2022). <em>Statistik pendidikan Indonesia 2022</em>. BPS RI.</div>
+        <div class="fact-num">189 / 100rb</div>
+        <p>Angka Kematian Ibu (AKI) Indonesia mencapai 189 per 100.000 kelahiran hidup — tertinggi kedua di ASEAN dan masih sangat jauh dari target SDG 3 sebesar 70 per 100.000 pada 2030.</p>
+        <div class="read-more"><span>Lihat detail & sumber</span></div>
+        <div class="ref">Badan Pusat Statistik. (2020). <em>Long Form Sensus Penduduk 2020: Angka kematian ibu</em>. BPS RI. https://www.bps.go.id</div>
       </div>
 
       <div class="fact-card reveal" onclick="openModal('f2')">
-        <div class="fact-num">3,67 Jt</div>
-        <p>Jumlah anak tidak sekolah (usia 7–18 tahun) di Indonesia pada 2023, berdasarkan data Susenas BPS, mayoritas dari keluarga miskin dan daerah terpencil.</p>
-        <div class="read-more"><span>Lihat detail</span></div>
-        <div class="ref">Badan Pusat Statistik. (2023). <em>Survei Sosial Ekonomi Nasional (Susenas) Maret 2023</em>. BPS RI.</div>
+        <div class="fact-num">21,5%</div>
+        <p>Prevalensi stunting balita Indonesia tahun 2023 berdasarkan Survei Kesehatan Indonesia (SKI), turun dari 24,4% (2021) namun masih jauh dari target nasional 14% pada 2024.</p>
+        <div class="read-more"><span>Lihat detail & sumber</span></div>
+        <div class="ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Survei Kesehatan Indonesia (SKI) 2023</em>. Kemenkes RI. https://www.kemkes.go.id</div>
       </div>
 
       <div class="fact-card reveal" onclick="openModal('f3')">
-        <div class="fact-num">APK SMA 85,45%</div>
-        <p>Angka Partisipasi Kasar (APK) SMA/sederajat nasional Indonesia tahun 2023, meningkat dari tahun sebelumnya namun masih di bawah target Renstra 2024.</p>
-        <div class="read-more"><span>Lihat detail</span></div>
-        <div class="ref">Badan Pusat Statistik. (2023). <em>Indikator pendidikan 1994–2024</em>. BPS RI.</div>
+        <div class="fact-num">16,85 / 1000</div>
+        <p>Angka Kematian Bayi (AKB) Indonesia mencapai 16,85 per 1.000 kelahiran hidup berdasarkan SP2020 — masih di atas target SDG 3 sebesar 12 per 1.000 pada 2030.</p>
+        <div class="read-more"><span>Lihat detail & sumber</span></div>
+        <div class="ref">Badan Pusat Statistik. (2020). <em>Long Form Sensus Penduduk 2020: Angka kematian bayi</em>. BPS RI. https://www.bps.go.id</div>
       </div>
 
       <div class="fact-card reveal" onclick="openModal('f4')">
-        <div class="fact-num">Rp 612,2T</div>
-        <p>Anggaran pendidikan Indonesia pada APBN 2023, setara 20% dari total APBN sesuai amanat konstitusi. Naik menjadi Rp 665T pada APBN 2024.</p>
-        <div class="read-more"><span>Lihat detail</span></div>
-        <div class="ref">Kementerian Keuangan RI. (2023). <em>Nota keuangan dan APBN tahun anggaran 2023</em>. Kemenkeu RI.</div>
+        <div class="fact-num">98,8%</div>
+        <p>Cakupan kepesertaan Jaminan Kesehatan Nasional (JKN) BPJS Kesehatan per Desember 2023, menjadikan Indonesia salah satu negara dengan program UHC terbesar di dunia.</p>
+        <div class="read-more"><span>Lihat detail & sumber</span></div>
+        <div class="ref">BPJS Kesehatan. (2023). <em>Laporan pengelolaan program dan laporan keuangan BPJS Kesehatan tahun 2023</em>. BPJS Kesehatan. https://www.bpjs-kesehatan.go.id</div>
       </div>
 
       <div class="fact-card reveal" onclick="openModal('f5')">
-        <div class="fact-num">Peringkat 66 / 81</div>
-        <p>Posisi Indonesia dalam PISA 2022 dari 81 negara. Skor: Matematika 366, Membaca 359, Sains 383 — naik 5–6 peringkat dibanding PISA 2018.</p>
-        <div class="read-more"><span>Lihat detail</span></div>
-        <div class="ref">Organisation for Economic Co-operation and Development. (2023). <em>PISA 2022 results</em> (Vol. I). OECD Publishing. https://doi.org/10.1787/53f23881-en</div>
+        <div class="fact-num">354 / 100rb</div>
+        <p>Insidensi tuberkulosis (TBC) di Indonesia tahun 2022 sebesar 354 per 100.000 penduduk — tertinggi ketiga di dunia, dengan estimasi 1.060.000 kasus baru per tahun.</p>
+        <div class="read-more"><span>Lihat detail & sumber</span></div>
+        <div class="ref">World Health Organization. (2023). <em>Global tuberculosis report 2023</em>. WHO. https://www.who.int/publications/i/item/9789240083851</div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- MODALS -->
-<div class="modal-overlay" id="modal-f1" onclick="closeModal(event, 'f1')">
+<!-- MODALS SDG 3 -->
+<div class="modal-overlay" id="modal-f1" onclick="closeModal(event,'f1')">
   <div class="modal">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModalBtn('f1')">✕</button>
-      <div class="modal-num">96,35%</div>
-      <h2>Tingkat Melek Huruf Indonesia (2022)</h2>
+      <div class="modal-num">189</div>
+      <h2>Angka Kematian Ibu (AKI) Indonesia</h2>
     </div>
     <div class="modal-body">
-      <div class="modal-tag">📖 Literasi</div>
+      <div class="modal-tag">🤱 Kesehatan Ibu</div>
       <h3>Temuan Utama</h3>
-      <p>Angka Melek Huruf (AMH) penduduk Indonesia usia 15 tahun ke atas mencapai <strong>96,35%</strong> pada tahun 2022. Artinya, 96 dari setiap 100 penduduk dewasa Indonesia mampu membaca dan menulis.</p>
-      <h3>Konteks & Analisis</h3>
+      <p>Berdasarkan Long Form Sensus Penduduk 2020 (SP2020) oleh BPS, AKI Indonesia mencapai <strong>189 per 100.000 kelahiran hidup</strong>, menempatkan Indonesia di peringkat kedua tertinggi di ASEAN setelah Laos.</p>
+      <h3>Tren AKI Indonesia</h3>
       <ul>
-        <li>AMH Indonesia terus meningkat dari tahun ke tahun, namun kesenjangan antara perkotaan dan perdesaan masih signifikan</li>
-        <li>AMH perdesaan hanya 93,65% (2021), jauh di bawah perkotaan yang mencapai >98%</li>
-        <li>Provinsi Papua, Papua Barat, dan NTT masih mencatat AMH terendah nasional</li>
-        <li>AMH pemuda (15–24 tahun) jauh lebih tinggi yaitu 99,74% (2022), menunjukkan generasi muda lebih melek huruf</li>
+        <li>2020 (data Kemenkes MPDN): 305 per 100.000 kelahiran hidup</li>
+        <li>2022 (MPDN): 4.005 total kematian ibu</li>
+        <li>2023 (MPDN): 4.129 total kematian ibu — justru meningkat</li>
+        <li>Target SDG 3.1 tahun 2030: ≤ 70 per 100.000 kelahiran hidup</li>
       </ul>
-      <h3>Relevansi terhadap SDG 4</h3>
-      <p>Peningkatan AMH merupakan fondasi pencapaian SDG 4.6 (memastikan semua remaja dan sebagian besar orang dewasa mencapai literasi dan numerasi pada 2030).</p>
+      <h3>Penyebab Utama</h3>
+      <p>Kematian ibu di Indonesia didominasi oleh hipertensi dalam kehamilan (preeklamsia), perdarahan pasca persalinan, dan komplikasi non-obstetrik. Keterlambatan rujukan ke fasilitas kesehatan juga menjadi faktor kritis.</p>
       <div class="modal-source">
-        <div class="source-label">Referensi</div>
-        <p>Badan Pusat Statistik. (2022). <em>Statistik pendidikan Indonesia 2022</em>. BPS RI. https://www.bps.go.id/id/publication/2022/11/25/a80bdf8c85bc28a4e6566661/statistik-pendidikan-2022.html</p>
+        <div class="source-label">Referensi APA</div>
+        <p>Badan Pusat Statistik. (2020). <em>Long Form Sensus Penduduk 2020: Angka kematian ibu</em>. BPS RI. https://www.bps.go.id</p>
+        <p style="margin-top:.5rem">Kementerian Kesehatan Republik Indonesia. (2023). <em>Profil program kesehatan masyarakat tahun 2023</em>. Direktorat Jenderal Kesehatan Masyarakat. https://kesprimkom.kemkes.go.id</p>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-overlay" id="modal-f2" onclick="closeModal(event, 'f2')">
+<div class="modal-overlay" id="modal-f2" onclick="closeModal(event,'f2')">
   <div class="modal">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModalBtn('f2')">✕</button>
-      <div class="modal-num">3,67 Jt</div>
-      <h2>Anak Tidak Sekolah di Indonesia (2023)</h2>
+      <div class="modal-num">21,5%</div>
+      <h2>Prevalensi Stunting Balita Indonesia (2023)</h2>
     </div>
     <div class="modal-body">
-      <div class="modal-tag">🏫 Akses Pendidikan</div>
+      <div class="modal-tag">👶 Gizi & Stunting</div>
       <h3>Temuan Utama</h3>
-      <p>Berdasarkan Survei Sosial Ekonomi Nasional (Susenas) Maret 2023 oleh BPS, terdapat <strong>sekitar 3,67 juta anak</strong> usia 7–18 tahun yang tidak bersekolah di Indonesia.</p>
-      <h3>Faktor Penyebab</h3>
+      <p>Prevalensi stunting balita Indonesia mencapai <strong>21,5%</strong> berdasarkan Survei Kesehatan Indonesia (SKI) 2023 oleh Kemenkes RI. Artinya lebih dari 1 dari 5 balita di Indonesia mengalami gagal tumbuh akibat kekurangan gizi kronis.</p>
+      <h3>Tren Stunting Nasional</h3>
       <ul>
-        <li>Faktor ekonomi: biaya pendidikan yang masih dianggap berat oleh keluarga kurang mampu</li>
-        <li>Geografis: keterbatasan akses sekolah di daerah 3T (Terdepan, Terluar, Tertinggal)</li>
-        <li>Sosial-budaya: pernikahan dini, terutama pada anak perempuan di daerah tertentu</li>
-        <li>Anak berkebutuhan khusus yang belum terlayani secara optimal</li>
+        <li>2019 (SSGBI): 27,7%</li>
+        <li>2021 (SSGI): 24,4%</li>
+        <li>2022 (SSGI): 21,6%</li>
+        <li>2023 (SKI): 21,5%</li>
+        <li>Target nasional 2024: 14% (belum tercapai)</li>
       </ul>
-      <h3>Upaya Pemerintah</h3>
-      <p>Program Indonesia Pintar (PIP) telah menjangkau lebih dari 21 juta siswa pada 2024 untuk mencegah putus sekolah akibat faktor ekonomi.</p>
+      <h3>Dampak Stunting</h3>
+      <p>Stunting berdampak permanen pada perkembangan otak, kecerdasan, dan produktivitas anak di masa dewasa. Pemerintah menetapkan stunting sebagai isu prioritas nasional melalui Perpres No. 72 Tahun 2021.</p>
       <div class="modal-source">
-        <div class="source-label">Referensi</div>
-        <p>Badan Pusat Statistik. (2023). <em>Survei Sosial Ekonomi Nasional (Susenas) Maret 2023: Indikator pendidikan</em>. BPS RI. https://www.bps.go.id</p>
+        <div class="source-label">Referensi APA</div>
+        <p>Kementerian Kesehatan Republik Indonesia. (2023). <em>Survei Kesehatan Indonesia (SKI) 2023</em>. Kemenkes RI. https://www.kemkes.go.id</p>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-overlay" id="modal-f3" onclick="closeModal(event, 'f3')">
+<div class="modal-overlay" id="modal-f3" onclick="closeModal(event,'f3')">
   <div class="modal">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModalBtn('f3')">✕</button>
-      <div class="modal-num">85,45%</div>
-      <h2>APK SMA/Sederajat Nasional (2023)</h2>
+      <div class="modal-num">16,85</div>
+      <h2>Angka Kematian Bayi (AKB) Indonesia</h2>
     </div>
     <div class="modal-body">
-      <div class="modal-tag">🎓 Partisipasi Sekolah</div>
+      <div class="modal-tag">🍼 Kesehatan Bayi</div>
       <h3>Temuan Utama</h3>
-      <p>Angka Partisipasi Kasar (APK) SMA/SMK/MA/sederajat secara nasional mencapai <strong>85,45%</strong> pada tahun 2023, meningkat dibanding tahun-tahun sebelumnya namun masih di bawah target Renstra Kemendikbudristek 2020–2024.</p>
-      <h3>Perbandingan Jenjang Pendidikan (2023)</h3>
+      <p>Angka Kematian Bayi (AKB) Indonesia berdasarkan Long Form SP2020 mencapai <strong>16,85 per 1.000 kelahiran hidup</strong> — masih di atas target SDG 3.2 sebesar 12 per 1.000 pada 2030.</p>
+      <h3>Penyebab Utama AKB</h3>
       <ul>
-        <li>APK SD/sederajat: 105,62% (melampaui 100% karena ada siswa di luar usia ideal)</li>
-        <li>APK SMP/sederajat: ~93%</li>
-        <li>APK SMA/sederajat: 85,45%</li>
-        <li>APK Perguruan Tinggi: ~31%</li>
+        <li>Gangguan pernapasan dan kardiovaskular</li>
+        <li>Bayi Berat Lahir Rendah (BBLR) dan prematuritas</li>
+        <li>Kelainan kongenital (14,8%)</li>
+        <li>Infeksi dan diare</li>
       </ul>
-      <h3>Interpretasi</h3>
-      <p>Semakin tinggi jenjang pendidikan, semakin rendah APK. Ini menunjukkan banyak siswa yang tidak melanjutkan sekolah ke jenjang yang lebih tinggi, terutama dari kelompok ekonomi bawah.</p>
+      <h3>Konteks Regional</h3>
+      <p>Pada 2023, total kematian bayi yang dilaporkan mencapai 32.445 kasus. Provinsi Jawa Barat mencatat kematian bayi tertinggi (5.234), sementara fasilitas kesehatan yang kurang memadai di daerah terpencil menjadi faktor utama.</p>
       <div class="modal-source">
-        <div class="source-label">Referensi</div>
-        <p>Badan Pusat Statistik. (2023). <em>Indikator pendidikan 1994–2024</em>. BPS RI. https://www.bps.go.id/en/statistics-table/1/MTUyNSMx/indikator-pendidikan-1994-2024.html</p>
+        <div class="source-label">Referensi APA</div>
+        <p>Badan Pusat Statistik. (2020). <em>Long Form Sensus Penduduk 2020</em>. BPS RI. https://www.bps.go.id</p>
+        <p style="margin-top:.5rem">Kementerian Kesehatan Republik Indonesia. (2024). <em>Profil program kesehatan masyarakat tahun 2023</em>. Direktorat Jenderal Kesehatan Masyarakat. https://kesprimkom.kemkes.go.id/assets/uploads/contents/others/Profil_Kesehatan_Masyarakat_Tahun_2023.pdf</p>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-overlay" id="modal-f4" onclick="closeModal(event, 'f4')">
+<div class="modal-overlay" id="modal-f4" onclick="closeModal(event,'f4')">
   <div class="modal">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModalBtn('f4')">✕</button>
-      <div class="modal-num">Rp 612,2T</div>
-      <h2>Anggaran Pendidikan APBN 2023</h2>
+      <div class="modal-num">98,8%</div>
+      <h2>Cakupan JKN-BPJS Kesehatan (2023)</h2>
     </div>
     <div class="modal-body">
-      <div class="modal-tag">💰 Anggaran</div>
+      <div class="modal-tag">🏥 Jaminan Kesehatan</div>
       <h3>Temuan Utama</h3>
-      <p>Pemerintah Indonesia mengalokasikan anggaran pendidikan sebesar <strong>Rp 612,23 triliun</strong> dalam APBN 2023, setara 20% dari total belanja negara sesuai amanat UUD 1945 dan UU Sisdiknas No. 20/2003.</p>
-      <h3>Tren Anggaran Pendidikan</h3>
+      <p>Cakupan Jaminan Kesehatan Nasional (JKN) yang dikelola BPJS Kesehatan mencapai <strong>98,8%</strong> atau sekitar 267 juta peserta per Desember 2023, menjadikan Indonesia salah satu negara dengan program Universal Health Coverage (UHC) terbesar di dunia.</p>
+      <h3>Pencapaian UHC Indonesia</h3>
       <ul>
-        <li>APBN 2022: Rp 542,82 triliun</li>
-        <li>APBN 2023: Rp 612,23 triliun (+12,8%)</li>
-        <li>APBN 2024: Rp 665,02 triliun (+8,6%)</li>
-        <li>APBN 2025: Rp 724,26 triliun (+8,9%)</li>
+        <li>Total peserta JKN 2023: ~267 juta jiwa</li>
+        <li>Indonesia menempati UHC Service Coverage Index (SCI) 59 pada 2021 (WHO)</li>
+        <li>Target UHC nasional: cakupan 100% sebelum 2030</li>
+        <li>JKN melayani lebih dari 500 juta kunjungan layanan kesehatan per tahun</li>
       </ul>
       <h3>Tantangan</h3>
-      <p>Meski anggaran terus naik, kualitas pendidikan belum meningkat signifikan. Masih terdapat ketimpangan alokasi antara pusat dan daerah, serta tantangan efektivitas penggunaan anggaran di tingkat sekolah.</p>
+      <p>Meski cakupan peserta sangat tinggi, kualitas layanan dan pemerataan fasilitas kesehatan antar wilayah masih menjadi tantangan utama. Defisit keuangan BPJS juga kerap terjadi setiap tahun.</p>
       <div class="modal-source">
-        <div class="source-label">Referensi</div>
-        <p>Kementerian Keuangan Republik Indonesia. (2023). <em>Nota keuangan dan Anggaran Pendapatan dan Belanja Negara tahun anggaran 2023</em>. Kemenkeu RI. https://www.kemenkeu.go.id</p>
+        <div class="source-label">Referensi APA</div>
+        <p>BPJS Kesehatan. (2023). <em>Laporan pengelolaan program dan laporan keuangan BPJS Kesehatan tahun 2023</em>. BPJS Kesehatan. https://www.bpjs-kesehatan.go.id</p>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal-overlay" id="modal-f5" onclick="closeModal(event, 'f5')">
+<div class="modal-overlay" id="modal-f5" onclick="closeModal(event,'f5')">
   <div class="modal">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModalBtn('f5')">✕</button>
-      <div class="modal-num">#66 / 81</div>
-      <h2>Hasil PISA 2022 Indonesia</h2>
+      <div class="modal-num">#3 Dunia</div>
+      <h2>Beban TBC Indonesia (2022)</h2>
     </div>
     <div class="modal-body">
-      <div class="modal-tag">📊 PISA OECD 2022</div>
-      <h3>Skor Indonesia di PISA 2022</h3>
+      <div class="modal-tag">🫁 Tuberkulosis</div>
+      <h3>Temuan Utama</h3>
+      <p>Indonesia berada di <strong>peringkat ketiga dunia</strong> dalam beban tuberkulosis (TBC) dengan insidensi 354 per 100.000 penduduk dan estimasi 1.060.000 kasus baru per tahun berdasarkan Global TB Report 2023 WHO.</p>
+      <h3>Data TBC Indonesia</h3>
       <ul>
-        <li><strong>Matematika:</strong> 366 poin (rata-rata OECD: 472)</li>
-        <li><strong>Membaca:</strong> 359 poin (rata-rata OECD: 476)</li>
-        <li><strong>Sains:</strong> 383 poin (rata-rata OECD: 485)</li>
+        <li>Estimasi kasus baru TBC 2022: 1.060.000 orang</li>
+        <li>Estimasi kematian akibat TBC: 93.000 per tahun</li>
+        <li>Peringkat 3 dunia setelah India dan China</li>
+        <li>Target SDG 3.3: mengakhiri epidemi TBC pada 2030</li>
       </ul>
-      <h3>Peringkat & Perbandingan</h3>
-      <p>Indonesia berada di <strong>peringkat 66 dari 81 negara</strong> peserta PISA 2022. Meski skor turun 12–13 poin dari 2018 akibat dampak pandemi, peringkat Indonesia naik 5–6 posisi karena negara lain juga mengalami penurunan lebih besar.</p>
-      <h3>Konteks ASEAN</h3>
-      <ul>
-        <li>Singapura: Peringkat 1 dunia (skor total 1.679)</li>
-        <li>Vietnam: Peringkat 2 ASEAN</li>
-        <li>Indonesia: Peringkat 6 ASEAN (skor total 1.108)</li>
-      </ul>
+      <h3>Faktor Risiko</h3>
+      <p>Tingginya beban TBC di Indonesia berkaitan erat dengan kepadatan penduduk, kemiskinan, gizi buruk (termasuk stunting), akses layanan kesehatan yang terbatas, dan rendahnya kesadaran masyarakat untuk tes dan pengobatan tuntas.</p>
       <div class="modal-source">
-        <div class="source-label">Referensi</div>
-        <p>Organisation for Economic Co-operation and Development. (2023). <em>PISA 2022 results (Volume I): The state of learning and equity in education</em>. OECD Publishing. https://doi.org/10.1787/53f23881-en</p>
+        <div class="source-label">Referensi APA</div>
+        <p>World Health Organization. (2023). <em>Global tuberculosis report 2023</em>. WHO. https://www.who.int/publications/i/item/9789240083851</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- TARGET SDG 4 -->
+<!-- TARGET SDG 3 -->
 <section id="target">
   <div class="container">
     <div class="section-label reveal">Fokus Proyek</div>
-    <h2 class="section-title reveal">Target SDG 4 yang Dipilih</h2>
-    <p class="section-desc reveal">Dari seluruh target SDG 4, proyek ini berfokus pada dua target utama yang paling relevan dengan kondisi pendidikan di Indonesia.</p>
+    <h2 class="section-title reveal">Target SDG 3 yang Dipilih</h2>
+    <p class="section-desc reveal">Dari seluruh target SDG 3, proyek ini berfokus pada dua target utama yang paling relevan dengan kondisi kesehatan di Indonesia.</p>
     <div style="margin-top:2rem">
       <div class="target-card reveal">
-        <div class="target-badge">4.1</div>
+        <div class="target-badge">3.1</div>
         <div>
-          <h3>Pendidikan Dasar & Menengah Gratis dan Berkualitas</h3>
-          <p>Pada 2030, memastikan semua anak perempuan dan laki-laki menyelesaikan pendidikan dasar dan menengah yang gratis, setara, dan berkualitas, yang mengarah pada hasil pembelajaran yang relevan dan efektif.</p>
+          <h3>Penurunan Angka Kematian Ibu</h3>
+          <p>Pada 2030, mengurangi rasio Angka Kematian Ibu (AKI) hingga kurang dari 70 per 100.000 kelahiran hidup. Indonesia saat ini masih berada di kisaran 189 per 100.000 — jauh dari target global dan menjadi prioritas utama pembangunan kesehatan nasional.</p>
         </div>
       </div>
       <div class="target-card reveal">
-        <div class="target-badge">4.4</div>
+        <div class="target-badge">3.2</div>
         <div>
-          <h3>Peningkatan Keterampilan Teknis & Vokasional</h3>
-          <p>Pada 2030, secara substansial meningkatkan jumlah pemuda dan orang dewasa yang memiliki keterampilan relevan, termasuk keterampilan teknis dan vokasional, untuk pekerjaan, pekerjaan layak, dan kewirausahaan.</p>
+          <h3>Mengakhiri Kematian Bayi yang Dapat Dicegah</h3>
+          <p>Pada 2030, mengakhiri kematian bayi baru lahir dan balita yang dapat dicegah — dengan target Angka Kematian Neonatal ≤ 12 per 1.000 kelahiran hidup dan Angka Kematian Balita ≤ 25 per 1.000. Indonesia saat ini mencatat AKB 16,85 per 1.000 dan perlu percepatan intervensi kesehatan ibu-anak.</p>
         </div>
       </div>
     </div>
@@ -660,32 +662,32 @@
   <div class="container">
     <div class="section-label reveal">Metodologi</div>
     <h2 class="section-title reveal">Design Thinking</h2>
-    <p class="section-desc reveal">Website ini dibangun menggunakan pendekatan Design Thinking 5 tahap untuk memastikan solusi yang ditawarkan benar-benar berpusat pada kebutuhan pengguna.</p>
+    <p class="section-desc reveal">Proyek SDG 3 ini dibangun menggunakan pendekatan Design Thinking 5 tahap untuk memastikan solusi kesehatan yang ditawarkan benar-benar berpusat pada kebutuhan masyarakat.</p>
     <div class="dt-grid">
       <div class="dt-card dt1 reveal">
         <div class="dt-icon">🔍</div>
         <h3>Empati & Riset</h3>
-        <p>Memahami tantangan nyata pendidikan di Indonesia melalui data lapangan, wawancara, dan observasi terhadap siswa dan guru di daerah terpencil.</p>
+        <p>Memahami tantangan kesehatan nyata di Indonesia melalui data lapangan, wawancara tenaga medis, dan observasi kondisi ibu dan anak di daerah dengan akses terbatas.</p>
       </div>
       <div class="dt-card dt2 reveal">
         <div class="dt-icon">💡</div>
         <h3>Ideasi</h3>
-        <p>Menghasilkan berbagai ide inovatif untuk meningkatkan akses dan kualitas pendidikan melalui teknologi, kebijakan, dan kolaborasi komunitas.</p>
+        <p>Menghasilkan ide inovatif untuk menurunkan AKI, AKB, dan stunting melalui teknologi kesehatan, peningkatan posyandu, edukasi gizi, dan penguatan sistem rujukan.</p>
       </div>
       <div class="dt-card dt3 reveal">
         <div class="dt-icon">🛠️</div>
         <h3>Prototipe</h3>
-        <p>Membangun model platform pembelajaran digital yang terjangkau dan dapat diakses offline untuk mendukung pendidikan di daerah dengan keterbatasan internet.</p>
+        <p>Membangun model aplikasi pemantauan kesehatan ibu-anak berbasis mobile yang mudah digunakan oleh bidan dan kader posyandu di daerah terpencil.</p>
       </div>
       <div class="dt-card dt4 reveal">
         <div class="dt-icon">🧪</div>
         <h3>Pengujian & Review</h3>
-        <p>Menguji prototipe bersama siswa dan guru di lapangan, mengumpulkan umpan balik, dan melakukan perbaikan iteratif berdasarkan hasil evaluasi.</p>
+        <p>Menguji prototipe bersama tenaga kesehatan dan kader posyandu, mengumpulkan umpan balik, dan melakukan perbaikan berdasarkan hasil uji lapangan.</p>
       </div>
       <div class="dt-card dt5 reveal">
         <div class="dt-icon">🪞</div>
         <h3>Refleksi</h3>
-        <p>Mengevaluasi dampak solusi terhadap pencapaian SDG 4, mengidentifikasi hambatan, dan merumuskan langkah lanjutan yang lebih efektif dan berkelanjutan.</p>
+        <p>Mengevaluasi dampak solusi terhadap pencapaian SDG 3, mengidentifikasi hambatan implementasi, dan merumuskan strategi perbaikan yang lebih efektif dan berkelanjutan.</p>
       </div>
     </div>
   </div>
@@ -695,107 +697,139 @@
 <section id="review">
   <div class="container">
     <div class="section-label reveal">Review 17 SDGs</div>
-    <h2 class="section-title reveal">Analisis SWOT: 2 Target SDG 4</h2>
-    <p class="section-desc reveal">Dari 17 SDGs yang ditetapkan PBB, proyek ini berfokus pada <strong>SDG 4 – Pendidikan Berkualitas</strong>. Berikut adalah analisis SWOT (Kekuatan, Kelemahan, Peluang, dan Ancaman) untuk dua target utama yang dipilih, dalam konteks Indonesia.</p>
+    <h2 class="section-title reveal">Analisis SWOT: 2 Target SDG 3</h2>
+    <p class="section-desc reveal">Dari 17 SDGs yang ditetapkan PBB, proyek ini berfokus pada <strong>SDG 3 – Kehidupan Sehat dan Sejahtera</strong>. Berikut analisis SWOT (Kekuatan, Kelemahan, Peluang, dan Ancaman) untuk dua target utama dalam konteks Indonesia.</p>
 
     <div class="review-intro reveal" style="margin-top:2rem">
-      <h3>Mengapa SDG 4?</h3>
-      <p>SDG 4 (Pendidikan Berkualitas) dipilih karena pendidikan adalah fondasi dari seluruh 17 tujuan SDGs. Tanpa akses pendidikan yang merata dan berkualitas, pencapaian tujuan lain seperti pengurangan kemiskinan (SDG 1), kesetaraan gender (SDG 5), hingga pertumbuhan ekonomi (SDG 8) akan sangat sulit diwujudkan — khususnya di Indonesia yang memiliki tantangan geografis dan kesenjangan yang kompleks.</p>
+      <h3>Mengapa SDG 3?</h3>
+      <p>SDG 3 dipilih karena kesehatan adalah fondasi produktivitas manusia dan pembangunan bangsa. Tanpa masyarakat yang sehat, pencapaian tujuan lain seperti pengurangan kemiskinan (SDG 1), pendidikan berkualitas (SDG 4), hingga pertumbuhan ekonomi (SDG 8) akan sangat terhambat — khususnya di Indonesia yang menghadapi tantangan AKI, stunting, dan beban penyakit menular yang masih tinggi.</p>
     </div>
 
-    <!-- SWOT Target 4.1 -->
+    <!-- SWOT Target 3.1 -->
     <div class="swot-wrapper" style="margin-top:3rem">
       <div class="swot-header reveal">
-        <div class="swot-badge">4.1</div>
+        <div class="swot-badge">3.1</div>
         <div>
-          <h3>Target 4.1 – Pendidikan Dasar & Menengah Gratis dan Berkualitas</h3>
-          <p>Pada 2030, memastikan semua anak perempuan dan laki-laki menyelesaikan pendidikan dasar dan menengah yang gratis, setara, dan berkualitas.</p>
+          <h3>Target 3.1 – Penurunan Angka Kematian Ibu</h3>
+          <p>Pada 2030, mengurangi rasio AKI hingga kurang dari 70 per 100.000 kelahiran hidup. Indonesia saat ini berada di 189 per 100.000 (SP2020).</p>
         </div>
       </div>
       <div class="swot-grid">
         <div class="swot-cell sw-s reveal" data-label="S">
           <h4>Kekuatan (Strengths)</h4>
           <ul>
-            <li>Program Wajib Belajar 12 Tahun sudah ditetapkan dalam kebijakan nasional</li>
-            <li>Dana BOS (Bantuan Operasional Sekolah) tersedia di seluruh sekolah negeri</li>
-            <li>APM (Angka Partisipasi Murni) SD sudah mencapai >97%, menunjukkan akses dasar yang luas</li>
-            <li>Kurikulum Merdeka memberikan fleksibilitas bagi sekolah dan guru dalam pembelajaran</li>
+            <li>JKN-BPJS Kesehatan mencakup 98,8% penduduk (267 juta jiwa) pada 2023, salah satu program UHC terbesar di dunia.
+              <span class="swot-ref">BPJS Kesehatan. (2023). <em>Laporan pengelolaan program dan laporan keuangan BPJS Kesehatan tahun 2023</em>. BPJS Kesehatan. https://www.bpjs-kesehatan.go.id</span></li>
+            <li>Cakupan persalinan oleh tenaga kesehatan terlatih mencapai 91,5% pada 2022, meningkat signifikan dibanding dekade sebelumnya.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Profil kesehatan Indonesia 2022</em>. Kemenkes RI. https://www.kemkes.go.id</span></li>
+            <li>Kebijakan Jaminan Persalinan (Jampersal) memberikan layanan persalinan gratis bagi ibu hamil kurang mampu di seluruh fasilitas kesehatan pemerintah.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2022). <em>Peraturan Menteri Kesehatan No. 12 Tahun 2021 tentang Jaminan Persalinan</em>. Kemenkes RI.</span></li>
+            <li>Jaringan 10.000+ Puskesmas dan 300.000+ Posyandu menjangkau pelayanan kesehatan ibu-anak hingga ke desa terpencil.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Profil kesehatan Indonesia 2022</em>. Kemenkes RI. https://www.kemkes.go.id</span></li>
           </ul>
         </div>
         <div class="swot-cell sw-w reveal" data-label="W">
           <h4>Kelemahan (Weaknesses)</h4>
           <ul>
-            <li>Kualitas pendidikan sangat tidak merata antara Jawa dan daerah 3T (Terdepan, Terluar, Tertinggal)</li>
-            <li>Kekurangan guru berkualitas di daerah pedesaan dan terpencil</li>
-            <li>Infrastruktur sekolah banyak yang masih rusak atau tidak layak</li>
-            <li>Angka putus sekolah di jenjang SMP–SMA masih cukup tinggi, terutama karena faktor ekonomi</li>
+            <li>AKI Indonesia 189 per 100.000 (SP2020) — tertinggi kedua di ASEAN, masih jauh dari target SDG 70 per 100.000 pada 2030.
+              <span class="swot-ref">Badan Pusat Statistik. (2020). <em>Long Form Sensus Penduduk 2020</em>. BPS RI. https://www.bps.go.id</span></li>
+            <li>Jumlah kematian ibu meningkat dari 4.005 (2022) menjadi 4.129 (2023) berdasarkan data MPDN Kemenkes, menunjukkan tren yang mengkhawatirkan.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2024). <em>Profil program kesehatan masyarakat tahun 2023</em>. Direktorat Jenderal Kesehatan Masyarakat. https://kesprimkom.kemkes.go.id</span></li>
+            <li>Keterlambatan rujukan ke rumah sakit masih menjadi penyebab kematian ibu non-obstetrik yang dapat dicegah di banyak daerah.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Profil kesehatan Indonesia 2022</em>. Kemenkes RI. https://www.kemkes.go.id</span></li>
+            <li>Distribusi tenaga kesehatan (bidan, dokter kandungan) sangat tidak merata antara Jawa dan daerah 3T.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Profil kesehatan Indonesia 2022</em>. Kemenkes RI. https://www.kemkes.go.id</span></li>
           </ul>
         </div>
         <div class="swot-cell sw-o reveal" data-label="O">
           <h4>Peluang (Opportunities)</h4>
           <ul>
-            <li>Bonus demografi Indonesia 2030 menjadi pendorong investasi besar di sektor pendidikan</li>
-            <li>Teknologi digital (e-learning, platform daring) membuka akses ke daerah terpencil</li>
-            <li>Kolaborasi dengan lembaga internasional (UNICEF, UNESCO, Bank Dunia) untuk pendanaan</li>
-            <li>Program beasiswa pemerintah (KIP-S) yang terus diperluas cakupannya</li>
+            <li>Teknologi telemedicine dan aplikasi pemantauan kehamilan digital dapat menjangkau ibu hamil di daerah terpencil tanpa harus datang ke fasilitas kesehatan.
+              <span class="swot-ref">World Health Organization. (2023). <em>Global strategy on digital health 2020–2025</em>. WHO. https://www.who.int/docs/default-source/documents/gs4dhdaa2a9f352b0445bafbc79ca799dce4d.pdf</span></li>
+            <li>Program RPJMN 2025–2029 menempatkan penurunan AKI sebagai prioritas kesehatan nasional dengan alokasi anggaran khusus.
+              <span class="swot-ref">Badan Perencanaan Pembangunan Nasional. (2024). <em>Rencana Pembangunan Jangka Menengah Nasional 2025–2029</em>. Bappenas RI. https://www.bappenas.go.id</span></li>
+            <li>Kolaborasi aktif dengan UNICEF, WHO, dan USAID dalam program Kesehatan Ibu dan Anak (KIA) di Indonesia.
+              <span class="swot-ref">United Nations Children's Fund. (2023). <em>Indonesia health country profile 2023</em>. UNICEF Indonesia. https://www.unicef.org/indonesia</span></li>
+            <li>Peningkatan literasi kesehatan masyarakat melalui media sosial dan platform digital membuka peluang edukasi kehamilan yang lebih luas.
+              <span class="swot-ref">Kementerian Komunikasi dan Informatika. (2023). <em>Indeks literasi digital nasional 2023</em>. Kominfo RI. https://www.kominfo.go.id</span></li>
           </ul>
         </div>
         <div class="swot-cell sw-t reveal" data-label="T">
           <h4>Ancaman (Threats)</h4>
           <ul>
-            <li>Kesenjangan digital yang besar antara perkotaan dan pedesaan memperburuk ketimpangan</li>
-            <li>Tekanan ekonomi keluarga miskin memaksa anak berhenti sekolah untuk bekerja</li>
-            <li>Bencana alam (gempa, banjir) kerap merusak infrastruktur pendidikan di berbagai wilayah</li>
-            <li>Potensi penurunan anggaran pendidikan akibat tekanan fiskal atau prioritas kebijakan lain</li>
+            <li>Pernikahan dini yang masih tinggi di beberapa provinsi meningkatkan risiko komplikasi kehamilan pada usia muda dan berkontribusi pada tingginya AKI.
+              <span class="swot-ref">Badan Pusat Statistik. (2022). <em>Profil perempuan Indonesia 2022</em>. BPS RI. https://www.bps.go.id</span></li>
+            <li>Kemiskinan dan keterbatasan akses transportasi di daerah 3T menghambat ibu hamil mendapatkan layanan kesehatan yang layak tepat waktu.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Profil kesehatan Indonesia 2022</em>. Kemenkes RI. https://www.kemkes.go.id</span></li>
+            <li>Defisit anggaran BPJS Kesehatan yang berulang setiap tahun mengancam keberlanjutan layanan kesehatan ibu yang bersumber dari JKN.
+              <span class="swot-ref">BPJS Kesehatan. (2023). <em>Laporan pengelolaan program dan laporan keuangan BPJS Kesehatan tahun 2023</em>. BPJS Kesehatan. https://www.bpjs-kesehatan.go.id</span></li>
+            <li>Kepercayaan pada dukun beranak di daerah tertentu masih tinggi, sehingga persalinan tidak ditolong tenaga medis terlatih masih terjadi.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Profil kesehatan Indonesia 2022</em>. Kemenkes RI. https://www.kemkes.go.id</span></li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- SWOT Target 4.4 -->
+    <!-- SWOT Target 3.2 -->
     <div class="swot-wrapper">
       <div class="swot-header reveal">
-        <div class="swot-badge">4.4</div>
+        <div class="swot-badge">3.2</div>
         <div>
-          <h3>Target 4.4 – Peningkatan Keterampilan Teknis & Vokasional</h3>
-          <p>Pada 2030, secara substansial meningkatkan jumlah pemuda dan orang dewasa yang memiliki keterampilan teknis dan vokasional untuk pekerjaan layak dan kewirausahaan.</p>
+          <h3>Target 3.2 – Mengakhiri Kematian Bayi yang Dapat Dicegah</h3>
+          <p>Pada 2030, menurunkan AKB ≤ 12 per 1.000 kelahiran hidup. Indonesia saat ini mencatat 16,85 per 1.000 (SP2020) dengan 32.445 kematian bayi pada 2023.</p>
         </div>
       </div>
       <div class="swot-grid">
         <div class="swot-cell sw-s reveal" data-label="S">
           <h4>Kekuatan (Strengths)</h4>
           <ul>
-            <li>Jaringan SMK (Sekolah Menengah Kejuruan) yang luas, tersebar di seluruh provinsi Indonesia</li>
-            <li>Program "SMK Pusat Keunggulan" yang menghubungkan sekolah vokasi dengan industri secara langsung</li>
-            <li>Balai Latihan Kerja (BLK) tersebar di berbagai kabupaten/kota untuk pelatihan keterampilan non-formal</li>
-            <li>Minat pemuda terhadap kewirausahaan digital yang semakin tinggi</li>
+            <li>Program imunisasi nasional telah mencakup 14 jenis vaksin wajib dengan cakupan imunisasi dasar lengkap (IDL) mencapai 84,2% pada 2022.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Profil kesehatan Indonesia 2022</em>. Kemenkes RI. https://www.kemkes.go.id</span></li>
+            <li>Tren AKB Indonesia menunjukkan penurunan konsisten selama 20 tahun terakhir, dari 46 per 1.000 (2000) menjadi 16,85 per 1.000 (SP2020).
+              <span class="swot-ref">Badan Pusat Statistik. (2020). <em>Long Form Sensus Penduduk 2020</em>. BPS RI. https://www.bps.go.id</span></li>
+            <li>Program 1.000 Hari Pertama Kehidupan (HPK) menjadi fondasi intervensi gizi dan kesehatan bayi sejak dalam kandungan.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2021). <em>Peraturan Presiden No. 72 Tahun 2021 tentang Percepatan Penurunan Stunting</em>. Sekretariat Negara RI.</span></li>
+            <li>Bantuan Insentif Neonatal (BIN) dan program kunjungan neonatal wajib 3 kali dalam 28 hari pertama kehidupan bayi.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Profil kesehatan Indonesia 2022</em>. Kemenkes RI. https://www.kemkes.go.id</span></li>
           </ul>
         </div>
         <div class="swot-cell sw-w reveal" data-label="W">
           <h4>Kelemahan (Weaknesses)</h4>
           <ul>
-            <li>Kurikulum vokasi sering tertinggal dibanding kebutuhan nyata dunia industri yang terus berkembang</li>
-            <li>Peralatan praktik di banyak SMK sudah usang dan tidak sesuai standar industri modern</li>
-            <li>Stigma sosial bahwa lulusan vokasi lebih rendah dari lulusan perguruan tinggi masih kuat di masyarakat</li>
-            <li>Ketidaksesuaian antara kompetensi lulusan SMK dengan kebutuhan pasar kerja (mismatch)</li>
+            <li>Stunting 21,5% (SKI 2023) yang masih tinggi menjadi faktor risiko utama kematian bayi karena daya tahan tubuh yang lemah.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Survei Kesehatan Indonesia (SKI) 2023</em>. Kemenkes RI. https://www.kemkes.go.id</span></li>
+            <li>AKB masih di atas target SDG 12 per 1.000; pada 2023 tercatat 32.445 kematian bayi — angka yang tidak menurun signifikan.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2024). <em>Profil program kesehatan masyarakat tahun 2023</em>. Direktorat Jenderal Kesehatan Masyarakat. https://kesprimkom.kemkes.go.id</span></li>
+            <li>Keterbatasan ruang NICU (Neonatal Intensive Care Unit) di RSUD daerah menyebabkan bayi prematur dan BBLR tidak tertangani optimal.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Profil kesehatan Indonesia 2022</em>. Kemenkes RI. https://www.kemkes.go.id</span></li>
+            <li>Cakupan imunisasi dasar lengkap turun dari 93,7% (2019) menjadi 84,2% (2022) pasca pandemi COVID-19.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Profil kesehatan Indonesia 2022</em>. Kemenkes RI. https://www.kemkes.go.id</span></li>
           </ul>
         </div>
         <div class="swot-cell sw-o reveal" data-label="O">
           <h4>Peluang (Opportunities)</h4>
           <ul>
-            <li>Pertumbuhan sektor digital, e-commerce, dan teknologi membuka banyak lapangan kerja baru</li>
-            <li>Program Magang Industri dan Teaching Factory yang mendorong kolaborasi sekolah-perusahaan</li>
-            <li>Dana Abadi Vokasi yang disediakan pemerintah untuk pembaruan kurikulum dan peralatan</li>
-            <li>Potensi ekspor tenaga kerja terampil ke negara-negara yang kekurangan SDM teknis</li>
+            <li>Transformasi Posyandu menjadi Posyandu Terintegrasi (Perpres No. 72/2021) memperluas layanan gizi, imunisasi, dan pemantauan tumbuh kembang bayi.
+              <span class="swot-ref">Presiden Republik Indonesia. (2021). <em>Peraturan Presiden No. 72 Tahun 2021 tentang Percepatan Penurunan Stunting</em>. Sekretariat Negara RI.</span></li>
+            <li>Inovasi teknologi neonatal dan alat diagnostik portabel yang semakin terjangkau memungkinkan skrining bayi risiko tinggi di Puskesmas terpencil.
+              <span class="swot-ref">World Health Organization. (2023). <em>Global strategy on digital health 2020–2025</em>. WHO. https://www.who.int</span></li>
+            <li>Dana Desa dapat dimanfaatkan untuk pembangunan Posyandu, pengadaan alat kesehatan, dan pemberian makanan tambahan bayi-balita.
+              <span class="swot-ref">Kementerian Desa, Pembangunan Daerah Tertinggal, dan Transmigrasi. (2023). <em>Pedoman penggunaan Dana Desa 2023</em>. Kemendesa. https://www.kemendesa.go.id</span></li>
+            <li>Program ASI Eksklusif dan edukasi MPASI yang diperkuat melalui regulasi Permenkes dapat menurunkan angka gizi buruk dan kematian bayi.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Peraturan Menteri Kesehatan No. 33 Tahun 2023 tentang Perencanaan Ketenagaan Kesehatan</em>. Kemenkes RI.</span></li>
           </ul>
         </div>
         <div class="swot-cell sw-t reveal" data-label="T">
           <h4>Ancaman (Threats)</h4>
           <ul>
-            <li>Otomatisasi dan kecerdasan buatan (AI) berpotensi menggantikan pekerjaan berbasis keterampilan dasar</li>
-            <li>Persaingan ketat dari tenaga kerja asing yang lebih terampil di era pasar global terbuka</li>
-            <li>Perubahan kebutuhan industri yang sangat cepat membuat kurikulum mudah menjadi usang</li>
-            <li>Tingkat pengangguran lulusan SMK yang masih relatif tinggi menurunkan minat masyarakat</li>
+            <li>Tingginya prevalensi stunting (21,5%) berdampak pada daya tahan imun bayi yang rendah, meningkatkan risiko kematian akibat infeksi dan penyakit.
+              <span class="swot-ref">Kementerian Kesehatan Republik Indonesia. (2023). <em>Survei Kesehatan Indonesia (SKI) 2023</em>. Kemenkes RI. https://www.kemkes.go.id</span></li>
+            <li>Potensi pandemi baru dan wabah penyakit (seperti yang terjadi pada COVID-19) dapat kembali mengganggu layanan imunisasi dan kesehatan bayi.
+              <span class="swot-ref">World Health Organization. (2023). <em>WHO immunization agenda 2030</em>. WHO. https://www.who.int/immunization/ia2030</span></li>
+            <li>Perubahan iklim meningkatkan risiko wabah penyakit menular (diare, malaria, DBD) yang berbahaya bagi bayi dan balita.
+              <span class="swot-ref">Intergovernmental Panel on Climate Change. (2022). <em>Climate change 2022: Impacts, adaptation and vulnerability</em>. IPCC. https://www.ipcc.ch/report/ar6/wg2</span></li>
+            <li>Kemiskinan ekstrem pada 8,7 juta penduduk (BPS, 2023) membatasi akses keluarga terhadap gizi cukup, air bersih, dan layanan kesehatan bayi berkualitas.
+              <span class="swot-ref">Badan Pusat Statistik. (2023). <em>Persentase penduduk miskin September 2023</em>. BPS RI. https://www.bps.go.id</span></li>
           </ul>
         </div>
       </div>
@@ -806,7 +840,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>Proyek SDG 4 · Pendidikan Berkualitas untuk Indonesia &nbsp;|&nbsp; <span>UN Sustainable Development Goals 2030</span></p>
+  <p>Proyek SDG 3 · Kehidupan Sehat dan Sejahtera untuk Indonesia &nbsp;|&nbsp; <span>UN Sustainable Development Goals 2030</span></p>
   <p style="margin-top:.4rem">Tugas STEM Project Arnando Michael Ginting · 2026</p>
 </footer>
 
@@ -832,7 +866,7 @@
     });
   });
 
-  // Modal functions
+  // Modal
   function openModal(id) {
     document.getElementById('modal-' + id).classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -842,9 +876,7 @@
     document.body.style.overflow = '';
   }
   function closeModal(event, id) {
-    if (event.target === document.getElementById('modal-' + id)) {
-      closeModalBtn(id);
-    }
+    if (event.target === document.getElementById('modal-' + id)) closeModalBtn(id);
   }
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
